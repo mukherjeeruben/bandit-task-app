@@ -1,7 +1,8 @@
 #forest_image {  
-    height: 650 px;  
-    color: #fff;
     background-image: url("../../assets/images/forest.jpg");  
-    background-size: 100%;  
-    background-size: cover;  
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%; // any width
+    height: 640px; // any height  
+    background-size: contain;
 }   
