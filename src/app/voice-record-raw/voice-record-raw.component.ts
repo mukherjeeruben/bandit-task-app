@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AudioRecordingService } from './audio-recording.service';
+import { RawAudioRecordingService } from './raw-audio-recording.service';
 
 @Component({
-  selector: 'app-voice-text',
-  templateUrl: './voice-text.component.html',
-  styleUrls: ['./voice-text.component.scss']
+  selector: 'app-raw-voice',
+  templateUrl: './voice-record-raw.component.html',
+  styleUrls: ['./voice-record-raw.component.scss']
 })
 export class VoiceTextComponent implements OnDestroy {
   audioRecordedTime: any;
@@ -16,19 +16,19 @@ export class VoiceTextComponent implements OnDestroy {
   isAudioRecording = false;
   audioConf = { audio: true}
 
-  constructor(private audioRecordingService: AudioRecordingService, private ref: ChangeDetectorRef,private sanitizer: DomSanitizer) 
+  constructor(private rawaudioRecordingService: RawAudioRecordingService, private ref: ChangeDetectorRef,private sanitizer: DomSanitizer) 
   { 
-    this.audioRecordingService.recordingFailed().subscribe(() => {
+    this.rawaudioRecordingService.recordingFailed().subscribe(() => {
       this.isAudioRecording = false;
       this.ref.detectChanges();
  });
 
-    this.audioRecordingService.getRecordedTime().subscribe((time) => {
+    this.rawaudioRecordingService.getRecordedTime().subscribe((time) => {
       this.audioRecordedTime = time;
       this.ref.detectChanges();
     });
 
-    this.audioRecordingService.getRecordedBlob().subscribe((data) => {
+    this.rawaudioRecordingService.getRecordedBlob().subscribe((data) => {
       this.audioBlob = data.blob;
       this.audioName = data.title;
       this.audioBlobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data.blob));
@@ -39,13 +39,13 @@ export class VoiceTextComponent implements OnDestroy {
   startAudioRecording() {
     if (!this.isAudioRecording) {
       this.isAudioRecording = true;
-      this.audioRecordingService.startRecording();
+      this.rawaudioRecordingService.startRecording();
     }
   }
 
   stopAudioRecording() {
     if (this.isAudioRecording) {
-      this.audioRecordingService.stopRecording();
+      this.rawaudioRecordingService.stopRecording();
       this.isAudioRecording = false;
     }
   }
@@ -74,7 +74,7 @@ export class VoiceTextComponent implements OnDestroy {
   abortAudioRecording() {
     if (this.isAudioRecording) {
       this.isAudioRecording = false;
-      this.audioRecordingService.abortRecording();
+      this.rawaudioRecordingService.abortRecording();
     }
   }
 

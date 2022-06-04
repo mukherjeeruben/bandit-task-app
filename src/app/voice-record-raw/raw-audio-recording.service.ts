@@ -9,7 +9,7 @@ interface RecordedAudioOutput {
 }
 
 @Injectable()
-export class AudioRecordingService {
+export class RawAudioRecordingService {
 
 
   private stream:any;

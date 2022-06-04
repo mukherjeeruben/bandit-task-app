@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BanditRedComponent } from './bandit-red.component';
+import { VoiceTextComponent } from './voice-record-raw.component';
 
-describe('BanditRedComponent', () => {
-  let component: BanditRedComponent;
-  let fixture: ComponentFixture<BanditRedComponent>;
+describe('VoiceTextComponent', () => {
+  let component: VoiceTextComponent;
+  let fixture: ComponentFixture<VoiceTextComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BanditRedComponent ]
+      declarations: [ VoiceTextComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BanditRedComponent);
+    fixture = TestBed.createComponent(VoiceTextComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
