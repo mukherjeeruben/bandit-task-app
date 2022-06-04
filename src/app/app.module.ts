@@ -6,20 +6,25 @@ import { AppComponent } from './app.component';
 import { GameBackgroundComponent } from './game-background/game-background.component';
 import { VoiceTextComponent } from './voice-record-raw/voice-record-raw.component';
 import { RawAudioRecordingService } from './voice-record-raw/raw-audio-recording.service';
+import { InformationComponent } from './information/information.component';
+import { SurveyComponent } from './survey/survey.component';
+import { PageBaseComponent } from './page-base/page-base.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     GameBackgroundComponent,
-    VoiceTextComponent
+    VoiceTextComponent,
+    InformationComponent,
+    SurveyComponent,
+    PageBaseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
   providers: [RawAudioRecordingService],
-  // bootstrap: [VoiceTextComponent]
-  bootstrap: [GameBackgroundComponent]
+  bootstrap: [PageBaseComponent]
 })
 export class AppModule { }
