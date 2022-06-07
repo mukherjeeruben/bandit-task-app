@@ -7,7 +7,7 @@ import { RawAudioRecordingService } from './raw-audio-recording.service';
   templateUrl: './voice-record-raw.component.html',
   styleUrls: ['./voice-record-raw.component.scss']
 })
-export class VoiceTextComponent implements OnDestroy {
+export class RawVoiceComponent implements OnDestroy {
   audioRecordedTime: any;
   audioBlob: any;
   audioName: any;
