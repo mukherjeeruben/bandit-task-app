@@ -1,0 +1,59 @@
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+#forest-image {  
+    background-image: url("../../assets/images/forest.jpg");  
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%; // any width
+    height: 100%; // any height  
+    background-size: cover;
+} 
+
+.column {
+    float: center;
+  }
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+#blue-bandit {  
+    content : url("../../assets/images/lep1blue.png");  
+    cursor: pointer;
+    width: 20%;
+    height: 20%;
+} 
+
+#red-bandit {  
+    content : url("../../assets/images/lep2red.png");  
+    cursor: pointer;
+    width: 20%;
+    height: 20%;
+} 
+
+
+#pot-gold {  
+    background-image : url("../../assets/images/PotGold.png");  
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%; // any width
+    height: 100%; // any height 
+    background-size: contain;
+} 
+
+#text {
+    z-index: 100;
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    left: 150px;
+    top: 350px;
+  }
+

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GameBackgroundComponent } from './game-background/game-background.component';
+import { GameplayComponent } from './gameplay/gameplay.component';
 import { InformationComponent } from './information/information.component';
 import { SurveyComponent } from './survey/survey.component';
 
 const routes: Routes = [
-  {path: 'bandit-task', component: GameBackgroundComponent},
+  {path: 'bandit-task', component: GameplayComponent},
   {path: 'information', component: InformationComponent},
   {path: 'survey', component: SurveyComponent}
 ];
@@ -15,4 +15,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [GameBackgroundComponent, InformationComponent, SurveyComponent]
+export const routingComponents = [GameplayComponent, InformationComponent, SurveyComponent]
