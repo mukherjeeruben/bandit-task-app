@@ -9,6 +9,7 @@ import { RawVoiceComponent } from './voice-record-raw/voice-record-raw.component
 import { RawAudioRecordingService } from './voice-record-raw/raw-audio-recording.service';
 import { PageBaseComponent } from './page-base/page-base.component';
 import { GameplayComponent } from './gameplay/gameplay.component';
+import { VoiceTextService } from './gameplay/voice-text.service';
 
 
 
@@ -25,7 +26,7 @@ import { GameplayComponent } from './gameplay/gameplay.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [DataService, RawAudioRecordingService],
+  providers: [DataService, RawAudioRecordingService, VoiceTextService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
