@@ -1,21 +1,38 @@
 <div id="forest-image" class="container">
     <div class="row">
-        <div class="column" id="pot-gold">
-            <h1>{{totalReward}}</h1>
-        </div>
+        <div class="column" id="pot-gold"></div>
     </div>
     <div class="row">
-           <div class="col-md-3" id="blue-bandit" (click)="loadNextIteration(currentResponseIndex, 'blue')"></div>
+        <h1>{{totalReward}}</h1>
+    </div>
+    <div *ngIf="interfaceToggle; then clickInterface else voiceInterface"></div>
+    <ng-template #clickInterface >
+        <div class="row">
+           <div class="col-md-3" id="blue-bandit-conventional" (click)="loadNextIteration(currentResponseIndex, 'blue')"></div>
            <div class="col-md-3"></div>
-           <div class="col-md-3" id="red-bandit" (click)="loadNextIteration(currentResponseIndex, 'red')"></div>
-    </div>
+           <div class="col-md-3" id="red-bandit-conventional" (click)="loadNextIteration(currentResponseIndex, 'red')"></div>
+        </div>
+    </ng-template>
 
-    <div style="margin: 100px;">
-        <h1>Voice recognition</h1>
-        <button style="margin: 10px;" (click)="startService()">Start</button>
-        <button style="margin: 10px;" (click)="stopService()">Stop</button>
-        <p>{{voiceTextService.text}}</p>
-    </div>
+    <ng-template #voiceInterface>
+        <div class="row">
+            <div class="col-md-3" id="blue-bandit-voice"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3" id="red-bandit-voice"></div>
+         </div>
+
+         <div style="margin: 100px;">
+            <!-- <button style="margin: 10px;" (click)="startService()">Start</button>
+            <button style="margin: 10px;" (click)="stopService()">Stop</button> -->
+            <button class="button" (click)="startVoiceGame()"><span>Start</span></button> 
+            <p>{{voiceTextService.text}}</p>
+            <p>{{iter_index}}</p>
+        </div>
+
+    </ng-template>
+    
+
+    
 </div>
 
 

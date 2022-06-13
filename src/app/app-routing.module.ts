@@ -5,7 +5,7 @@ import { InformationComponent } from './information/information.component';
 import { SurveyComponent } from './survey/survey.component';
 
 const routes: Routes = [
-  {path: 'bandit-task', component: GameplayComponent},
+  {path: 'bandit-task/:task-type', component: GameplayComponent},
   {path: 'information', component: InformationComponent},
   {path: 'survey', component: SurveyComponent}
 ];
