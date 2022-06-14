@@ -31,7 +31,6 @@ export class VoiceTextService {
 
   start() {
     this.isStoppedSpeechRecog = false;
-    console.log(this.recognition);
     this.recognition.start();
     console.log("Speech recognition started")
     this.recognition.addEventListener('end', (condition:any) => {   // TODO Check
@@ -45,7 +44,6 @@ export class VoiceTextService {
     });
   }
   stop() {
-    console.log(this.recognition);
     this.isStoppedSpeechRecog = true;
     this.wordConcat()
     this.recognition.stop();

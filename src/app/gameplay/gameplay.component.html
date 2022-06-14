@@ -5,6 +5,9 @@
     <div class="row">
         <h1>{{totalReward}}</h1>
     </div>
+    <div class="row">
+        <h1>{{eventListn}}</h1>
+    </div>
     <div *ngIf="interfaceToggle; then clickInterface else voiceInterface"></div>
     <ng-template #clickInterface >
         <div class="row">
@@ -21,14 +24,15 @@
             <div class="col-md-3" id="red-bandit-voice"></div>
          </div>
 
-         <div style="margin: 100px;">
-            <!-- <button style="margin: 10px;" (click)="startService()">Start</button>
-            <button style="margin: 10px;" (click)="stopService()">Stop</button> -->
-            <button class="button" (click)="startVoiceGame()"><span>Start</span></button> 
-            <p>{{voiceTextService.text}}</p>
+         <div class="row">
+            <div class="col-md-3" *ngIf="interfaceStartButton">
+                <button class="button" (click)="startVoiceGame()"><span>Start</span></button>
+            </div>
+        </div>
+        <div class="row">
+            <p>{{voiceSelection}}</p>
             <p>{{iter_index}}</p>
         </div>
-
     </ng-template>
     
 

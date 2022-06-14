@@ -20,6 +20,11 @@ export class GameplayComponent implements OnInit {
   successResponse$:any;
   templateLength:number;
   interfaceToggle:boolean;
+  voiceSelection:string;
+  end_iter:number;
+  interval:any;
+  interfaceStartButton:boolean;
+  eventListn:string;
 
   medium_type: string = '';
   iter_index:number = 0;
@@ -30,6 +35,10 @@ export class GameplayComponent implements OnInit {
     this.voiceTextService.init();
     this.templateLength = 0;
     this.interfaceToggle = true;
+    this.voiceSelection='';
+    this.end_iter=0;
+    this.interfaceStartButton=true;
+    this.eventListn='';
    }
 
 public loadNextIteration(responseIndex: number, selection: string)
@@ -56,44 +65,53 @@ public loadNextIteration(responseIndex: number, selection: string)
       this.dataService.postUserGameData(this.userGameData).subscribe(
         data =>{ this.successResponse$ = data;}
       )
-      debugger;
       if(this.successResponse$ == true){
-        console.log('Data Inserted')
+        this.eventListn = 'Thanks for Playing !';
       }
     }
 }
 
 
-public loadNextIterationVoice(responseIndex: number, selection: string)
+public loadNextIterationVoice()
 {
-    let bandit_selection : number = this.filterAudioText(selection);
-    if(this.staticGameTemplate$[0][this.currentResponseIndex]!=null)
-    {
-      let reward = 0;
-      if(bandit_selection == 1){
-        reward = this.staticGameTemplate$[0][this.currentResponseIndex]['blue'];
+      if(this.templateLength - 1 == this.iter_index)
+        { 
+          clearInterval(this.interval);
+          this.end_iter += 1;
+        }
+    let selection = '';
+    let bandit_selection : number = this.filterAudioText(this.voiceTextService.text);
+    if(bandit_selection == 0 || bandit_selection == 1 || this.end_iter == 1){
+      if(this.end_iter != 1)
+      // if(this.staticGameTemplate$[0][this.iter_index]!=null)
+      {
+        let reward = 0;
+        if(bandit_selection == 1){
+          reward = this.staticGameTemplate$[0][this.iter_index]['blue'];
+          selection='blue';
+        }
+        else if(bandit_selection == 0){
+          reward = this.staticGameTemplate$[0][this.iter_index]['red'];
+          selection='red';
+        }
+          this.totalReward = this.totalReward + reward;
+          this.userGameData[this.iter_index] = {
+            action: selection,
+            reward: reward,
+            total_score: this.totalReward
+          };
+          this.iter_index += 1;
       }
-      else if(bandit_selection == 0){
-        reward = this.staticGameTemplate$[0][this.currentResponseIndex]['red'];
+    else if(this.end_iter == 1)
+      {
+        this.dataService.postUserGameData(this.userGameData).subscribe(
+          data =>{ this.successResponse$ = data;
+            this.eventListn = 'Thanks for Playing !';
+            this.stopService();}
+        )
       }
-        this.totalReward = this.totalReward + reward;
-        this.userGameData[this.currentResponseIndex] = {
-          action: selection,
-          reward: reward,
-          total_score: this.totalReward
-        };
-      this.currentResponseIndex = responseIndex + 1;
     }
-    else
-    {
-      this.dataService.postUserGameData(this.userGameData).subscribe(
-        data =>{ this.successResponse$ = data;}
-      )
-      debugger;
-      if(this.successResponse$ == true){
-        console.log('Data Inserted')
-      }
-    }
+    
 }
 
 getGameTemplate(){
@@ -115,35 +133,38 @@ ngOnInit() {
       this.interfaceToggle = true;
     }
     else{
-      this.router.navigate(['/information']);
+      this.router.navigate(['/']);
     }
   });
 }
 
-delay(ms: number) {
-  return new Promise( resolve => setTimeout(resolve, ms) );
-}
-
 startVoiceGame(){
+  this.interfaceStartButton = false;
   this.iter_index = 0;
-    const interval = setInterval(()=>{
-      if(this.templateLength <= this.iter_index)
-        { clearInterval(interval);} 
-        this.stopService()
-        this.iter_index < this.templateLength - 1 && 
-        setTimeout(()=>{this.startService();},500)
-        this.iter_index += 1;
-    },10000);
+    this.interval = setInterval(()=>{ 
+        this.stopService();
+        this.eventListn = 'Processing...'
+        if(this.iter_index < this.templateLength - 1)
+        { setTimeout(()=>{this.startService();},2000); }
+        else{
+          clearInterval(this.interval);
+          this.stopService();
+        }
+    },5000);
+
 }
 
 
 startService(){
+  this.eventListn = 'Listening...'
   this.voiceTextService.start()
 }
 
 stopService(){
+  this.eventListn = 'Submitting...'
   this.voiceTextService.stop();
-  this.loadNextIterationVoice(0,this.voiceTextService.text);
+  this.loadNextIterationVoice();
+  this.voiceTextService.text='';
 }
 
 public filterAudioText(rawText:string): number{
@@ -151,9 +172,11 @@ public filterAudioText(rawText:string): number{
   let rawTextSet = rawText.split('.');
   rawTextSet.forEach((element:string) => textSet.push(element.trim().toLowerCase()));
   if(textSet.includes('blue') || textSet.includes('blue leprechaun') || textSet.includes('left')){
+    this.voiceSelection = 'Blue';
     return 1;
   }
   else if(textSet.includes('red')|| textSet.includes('red leprechaun') || textSet.includes('right')){
+    this.voiceSelection = 'Red';
     return 0;
   }
   return -1
