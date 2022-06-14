@@ -23,11 +23,25 @@
     justify-content: center;
   }
 
+  #blank_image {  
+    content : url("../../assets/images/blank_img.png");  
+    width: 10%;
+    height: 20%;
+  }
+
 #blue-bandit-conventional {  
     content : url("../../assets/images/lep1blue.png");  
     cursor: pointer;
     width: 20%;
     height: 20%;
+} 
+
+#blue-bandit-selected-conventional {  
+  content : url("../../assets/images/lep1blue.png");  
+  cursor: pointer;
+  width: 20%;
+  height: 20%;
+  filter:drop-shadow(5px 5px 0 blue) drop-shadow(-5px -5px 0 blue);
 } 
 
 #red-bandit-conventional {  
@@ -37,16 +51,38 @@
     height: 20%;
 } 
 
+#red-bandit-selected-conventional {  
+  content : url("../../assets/images/lep2red.png");  
+  cursor: pointer;
+  width: 20%;
+  height: 20%;
+  filter:drop-shadow(5px 5px 0 blue) drop-shadow(-5px -5px 0 blue);
+}
+
 #blue-bandit-voice {  
   content : url("../../assets/images/lep1blue.png");  
   width: 20%;
   height: 20%;
 } 
 
+#blue-bandit-selected-voice {  
+  content : url("../../assets/images/lep1blue.png");  
+  width: 20%;
+  height: 20%;
+  filter:drop-shadow(5px 5px 0 blue) drop-shadow(-5px -5px 0 blue);
+}
+
 #red-bandit-voice {  
   content : url("../../assets/images/lep2red.png");  
   width: 20%;
   height: 20%;
+} 
+
+#red-bandit-selected-voice {  
+  content : url("../../assets/images/lep2red.png");  
+  width: 20%;
+  height: 20%;
+  filter:drop-shadow(5px 5px 0 blue) drop-shadow(-5px -5px 0 blue);
 } 
 
 

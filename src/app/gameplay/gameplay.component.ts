@@ -25,6 +25,8 @@ export class GameplayComponent implements OnInit {
   interval:any;
   interfaceStartButton:boolean;
   eventListn:string;
+  blueBanditselectionToggle: boolean;
+  redBanditselectionToggle:boolean;
 
   medium_type: string = '';
   iter_index:number = 0;
@@ -39,6 +41,8 @@ export class GameplayComponent implements OnInit {
     this.end_iter=0;
     this.interfaceStartButton=true;
     this.eventListn='';
+    this.blueBanditselectionToggle=false;
+    this.redBanditselectionToggle=false;
    }
 
 public loadNextIteration(responseIndex: number, selection: string)
@@ -106,8 +110,11 @@ public loadNextIterationVoice()
       {
         this.dataService.postUserGameData(this.userGameData).subscribe(
           data =>{ this.successResponse$ = data;
+            this.stopService();
             this.eventListn = 'Thanks for Playing !';
-            this.stopService();}
+            this.redBanditselectionToggle=false;
+            this.blueBanditselectionToggle=false;
+            }
         )
       }
     }
@@ -139,13 +146,22 @@ ngOnInit() {
 }
 
 startVoiceGame(){
+  this.eventListn = 'Starting... Please Wait.'
   this.interfaceStartButton = false;
   this.iter_index = 0;
     this.interval = setInterval(()=>{ 
         this.stopService();
         this.eventListn = 'Processing...'
+        if(this.voiceSelection == 'Blue'){
+          this.blueBanditselectionToggle=true;
+        }
+        if(this.voiceSelection == 'Red'){
+          this.redBanditselectionToggle=true;
+        }
         if(this.iter_index < this.templateLength - 1)
-        { setTimeout(()=>{this.startService();},2000); }
+        { setTimeout(()=>{this.startService();
+          this.blueBanditselectionToggle=false;
+          this.redBanditselectionToggle=false;},2000); }
         else{
           clearInterval(this.interval);
           this.stopService();
