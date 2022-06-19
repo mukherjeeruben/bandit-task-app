@@ -170,7 +170,6 @@ startVoiceGame(){
 
 }
 
-
 startService(){
   this.eventListn = 'Listening...'
   this.voiceTextService.start()
