@@ -224,7 +224,7 @@ public startGame(){
       setTimeout(()=>{
         this.startService();
         setTimeout(()=>{
-          this.stopService();
+          this.stopService(); // TODO Listening Image
         },3000);
       },2000);
     }
