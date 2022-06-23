@@ -15,16 +15,16 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
   staticGameTemplate$: any;
   templateLength:number;
   
-
+  public utterance: any;
   public selectedRate: number;
 	public selectedVoice: SpeechSynthesisVoice | null;
 	public text: string;
 	public voices: SpeechSynthesisVoice[];
 
   public initialDesc: string;
-  public query: string;
   public text_loss: string;
   public text_win: string;
+  public querySet: string[];
 
   public counter: number;
   public totalReward: number;
@@ -37,6 +37,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
   constructor(private dataService:DataService, public voiceTextService : VoiceTextService) {
     this.voiceTextService.init();
+    this.utterance = new SpeechSynthesisUtterance();
 
     this.templateLength = 0;
 
@@ -57,34 +58,28 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
     Unfortunately, your village is beyond the forest. 
     You have to navigate through a clump of dense bushes to reach home. 
     As you make your way through the forest, you will come upon several junctions.
-    At each junction, there will be two leprechauns: 'blue' and 'red' . One of them is good, one of them is bad.
+    At each junction, there will be two leprechauns: blue and red . One of them is good, one of them is bad.
     But you don’t know which one is which. You must make a choice about which one of them to pass by. You should choose carefully, because one of them will steal gold coins from you and run away.
     If you choose to pass by the “thief” leprechaun, you will lose the number of gold coins shown below each.
     If you choose to pass by the other leprechaun, you won’t lose any gold coins.
     The aim of this game is to arrive at your village with as many of your gold coins as possible.
     Say 'Blue' to select Blue leprechaun and 'Red' to select Red leprechaun`;
 
-    this.query = `Which leprechaun do you select?`;
-
     this.text_loss = 'Opps! Bad Selection.'
 
     this.text_win = 'Yay ! Good Selection.'
+
+    this.querySet = [`Now you are at another junction what do you select ? blue leprechaun or red leprechaun`,
+                    `This junction will take you closer to your destination. Which leprechaun do you select red or the blue leprechaun`,
+                    `Here again you come across a crossing, which leprechaun do you select? Red ot the blue one`,
+                    `Now which leprechaun do you select?`] 
 
    };
 
 
   public ngOnInit(){
-
     this.getGameTemplate();
-
-		this.voices = speechSynthesis.getVoices();
-		if ( ! this.voices.length ) {
-			speechSynthesis.addEventListener("voiceschanged",() => {
-					this.voices = speechSynthesis.getVoices();
-					this.selectedVoice = (this.voices[8] || null );});
-		}
-
-
+    this.getSpeechVoiceType();
 	}
 
 
@@ -109,21 +104,52 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 		}
 	}
 
+  // Speech Synthesize Code Block Start//
 
-	private synthesizeSpeechFromText(text: string) : void {
-		var utterance = new SpeechSynthesisUtterance( text );
-		utterance.voice = this.selectedVoice;
-		utterance.rate = this.selectedRate;
-    utterance.lang= 'en-US';
-		speechSynthesis.speak( utterance );
-	}
-
-
-  public initDescription(){
-    this.text = this.initialDesc;
-    this.speak();
+  public getSpeechVoiceType(){
+    this.voices = speechSynthesis.getVoices();
+		if ( ! this.voices.length ) {
+			speechSynthesis.addEventListener("voiceschanged",() => {
+					this.voices = speechSynthesis.getVoices();
+					this.selectedVoice = (this.voices[8] || null );});
+		}
   }
 
+	public async synthesizeSpeechFromText(text: string) {
+		this.utterance.voice = this.selectedVoice;
+		this.utterance.rate = this.selectedRate;
+    this.utterance.lang= 'en-US';
+    this.utterance.text = text;
+		window.speechSynthesis.speak(this.utterance);
+
+    return new Promise((resolve) => {
+      this.utterance.onend = resolve;
+    });
+	}
+
+  public async speechResponse(reward:number){
+    if(reward < 0){
+      await this.synthesizeSpeechFromText(this.text_loss);
+    }
+    else{
+      await this.synthesizeSpeechFromText(this.text_win);
+    }
+  }
+
+  public async initDescription(){
+    await this.synthesizeSpeechFromText(this.initialDesc);
+  }
+
+  public async randomSelectionResponse(){
+    const random = Math.floor(Math.random() * this.querySet.length);
+    await this.synthesizeSpeechFromText(this.querySet[random]);
+  }
+
+  // Speech Synthesize Code Block End//
+
+
+  
+  // User Data Record Logic Start //
 
   public loadNextIterationVoice()
 {
@@ -132,7 +158,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
     if(bandit_selection == 0 || bandit_selection == 1){
       console.log(bandit_selection);
-    if(this.end_iter != 1)
+    if(this.end_iter == 0)
       // if(this.staticGameTemplate$[0][this.iter_index]!=null)
       {
         let reward = 0;
@@ -161,9 +187,15 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
         )
       }
     }
+    else{
+      this.voiceTextService.text='';
+      this.text = `Sorry! I Couldn't recognize your response, Please try again`;
+      this.speak();
+    }
     
 }
 
+// User Data Record Logic End //
 
 startService(){
   this.voiceTextService.start()
@@ -180,105 +212,46 @@ public filterAudioText(rawText:string): number{
   let textSet: string[] = [];
   let rawTextSet = rawText.split('.');
   rawTextSet.forEach((element:string) => textSet.push(element.trim().toLowerCase()));
-  if(textSet.includes('blue') || textSet.includes('blue leprechaun') || textSet.includes('left')){
+  if(textSet.includes('blue') || textSet.includes('blue leprechaun') || textSet.includes('left') || textSet.includes('i select blue leprechaun') || textSet.includes('i select blue')|| textSet.includes('select blue')){
     this.voiceSelection = 'Blue';
     return 1;
   }
-  else if(textSet.includes('red')|| textSet.includes('red leprechaun') || textSet.includes('right')){
+  else if(textSet.includes('red')|| textSet.includes('red leprechaun') || textSet.includes('right')|| textSet.includes('i select red leprechaun')|| textSet.includes('i select red')|| textSet.includes('select red')){
     this.voiceSelection = 'Red';
     return 0;
   }
-  return -1
+  else{
+    return -1
+  }
 }
+
 
 // public startGame(){
 //   this.iter_index = 0;
-  
+
 //   this.interval = setInterval(()=>{
-//     this.stopService();
 //     if(this.iter_index < this.templateLength - 1)
-//         { setTimeout(()=>{
-//           this.text = this.query;
-//           this.speak();
-//           this.startService();
-//           },2000); 
-//         }
-//         else
-//         {
-//           clearInterval(this.interval);
-//           this.stopService();
-//         }
-//   },5000);
+//     {
+//       this.text = this.query;
+//       this.speak();
+//       setTimeout(()=>{
+//         this.startService();
+//         setTimeout(()=>{
+//           this.stopService(); 
+//         },2000);
+//       },3000);
+//     }
+//   },8000);
 // }
 
 
-public startGame(){
-  this.iter_index = 0;
 
-  this.interval = setInterval(()=>{
-    console.log(this.iter_index);
-    if(this.iter_index < this.templateLength - 1)
-    {
-      this.text = this.query;
-      this.speak();
-      setTimeout(()=>{
-        this.startService();
-        setTimeout(()=>{
-          this.stopService(); // TODO Listening Image
-        },3000);
-      },2000);
-    }
-  },8000);
+
+public async startGame() {
+  for (let i = 0; i < this.templateLength - 1; i++) {
+    await this.randomSelectionResponse();
+    console.log('Hello');
+  }
 }
 
-
-public speechResponse(reward:number){
-  if(reward<0){
-    this.text = this.text_loss;
-    this.speak();
-  }
-  else{
-    this.text = this.text_win;
-    this.speak();
-  }
-
-}
-
-
-  // public async dummy(){
-  //   this.textset.forEach(x => {
-  //     this.text = x;
-  //     this.speak();
-  //     if(speechSynthesis.speaking == true){
-  //       console.log('Speaking');
-  //     }
-  //   })
-  // }
-
-
-  // public async dummy(){
-  //   for(let i=0; i<2; i++){
-  //     this.text = this.textset[i];
-  //     this.speak();
-  //     debugger;
-  //     if(speechSynthesis.speaking){
-  //       await this.delay(10000);
-  //     }
-  //   }
-  // }
-
-  
-
-
-  //   this.textset.forEach(static_text => {
-  //     setTimeout(()=>{
-  //       this.text = static_text;
-        
-  //     }, 10000)
-  //   })
-  // }
-
-  // delay(ms: number) {
-  //   return new Promise( resolve => setTimeout(resolve, ms) );
-// }
 }
