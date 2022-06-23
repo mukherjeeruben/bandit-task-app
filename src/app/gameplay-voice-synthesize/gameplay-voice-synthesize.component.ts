@@ -142,8 +142,6 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
   // Speech Synthesize Code Block End//
 
-
-  
   // User Data Record Logic Start //
   public async processRecordedData(){
     let reward = 0;
@@ -176,15 +174,33 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 // User Data Record Logic End //
 
 
-// Voice to Text Code Block Start//
-startService(){
-  this.voiceTextService.start()
+// Game Driving Logic Start //
+public async startGame() { 
+  while(this.iter_index < this.templateLength - 1)
+  {
+    if(!this.unrecognized){
+      await this.randomSelectionResponse();
+      this.voiceTextService.start()
+      await new Promise(f => setTimeout(f, 7000));
+      this.voiceTextService.stop()
+      await this.processRecordedData();
+    }
+    else{
+      this.voiceTextService.start()
+      await new Promise(f => setTimeout(f, 7000));
+      this.voiceTextService.stop()
+      await this.processRecordedData();
+    }
+    
+  }
+  if(this.iter_index == this.templateLength - 1){
+    this.dataService.postUserGameData(this.userGameData).subscribe(
+      data =>{ 
+        console.log('Data Inserted Succesfully!');}
+    )
+    await this.onSuccessgameEnd();
+  }
 }
-
-stopService(){
-  this.voiceTextService.stop();
-}
-// Voice to Text Code Block End//
 
 
 public filterAudioText(rawText:string): number{
@@ -215,36 +231,6 @@ public filterAudioText(rawText:string): number{
   }
   else{
     return -1
-  }
-}
-
-
-
-// Game Driving Logic Start //
-public async startGame() { 
-  while(this.iter_index < this.templateLength - 1)
-  {
-    if(!this.unrecognized){
-      await this.randomSelectionResponse();
-      this.startService();
-      await new Promise(f => setTimeout(f, 7000));
-      this.stopService();
-      await this.processRecordedData();
-    }
-    else{
-      this.startService();
-      await new Promise(f => setTimeout(f, 7000));
-      this.stopService();
-      await this.processRecordedData();
-    }
-    
-  }
-  if(this.iter_index == this.templateLength - 1){
-    this.dataService.postUserGameData(this.userGameData).subscribe(
-      data =>{ 
-        console.log('Data Inserted Succesfully!');}
-    )
-    await this.onSuccessgameEnd();
   }
 }
 // Game Driving Logic End //
