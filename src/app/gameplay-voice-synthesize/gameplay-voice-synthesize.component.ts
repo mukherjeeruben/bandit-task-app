@@ -32,6 +32,9 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
   public iter_index:number;
   public voiceSelection:string;
 
+  public recordStartSound:any;
+  public recordStopSound:any;
+
   userGameData: {[iteration_number:number]: IGameData} = {};
 
   constructor(private dataService:DataService, public voiceTextService : VoiceTextService) {
@@ -73,6 +76,10 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
                     `This junction will take you closer to your destination. Which leprechaun do you select red or the blue leprechaun`,
                     `Here again you come across a crossing, which leprechaun do you select? Red ot the blue one`,
                     `Now which leprechaun do you select?`] 
+
+
+    this.recordStartSound = new Audio('../../assets/sounds/recordStartSound.wav');
+    this.recordStopSound = new Audio('../../assets/sounds/recordStopSound.wav')
 
    };
 
@@ -180,14 +187,18 @@ public async startGame() {
   {
     if(!this.unrecognized){
       await this.randomSelectionResponse();
+      this.recordStartSound.play();
       this.voiceTextService.start()
       await new Promise(f => setTimeout(f, 7000));
+      this.recordStopSound.play();
       this.voiceTextService.stop()
       await this.processRecordedData();
     }
     else{
+      this.recordStartSound.play();
       this.voiceTextService.start()
       await new Promise(f => setTimeout(f, 7000));
+      this.recordStopSound.play();
       this.voiceTextService.stop()
       await this.processRecordedData();
     }
