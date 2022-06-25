@@ -1,16 +1,25 @@
-<div>
-    <button
-		type="button"
-		(click)="initDescription()">
-		Start Init description 
-	</button>
-	<br>
-	<br>
-	<button
-		type="button"
-		(click)="startGame()">
-		Start Game 
-	</button>
-	<br>
-	<br>
-</div>
+
+	<body>
+		<div *ngIf="descriptionButton" id ="instructions-button">
+			<button class="glow-on-hover"
+				type="button"
+				(click)="initDescription()">
+				Instructions 
+			</button>
+		</div>
+
+		<div *ngIf="speechAnimation" id="sinwave-animantion"></div>
+		<div *ngIf="micAnimation" id="mic-image"></div>
+
+		<div *ngIf="playButton" id="play-button">
+			<button class="glow-on-hover"
+				type="button"
+				(click)="startGame()">
+				Start Game 
+			</button>
+		</div>
+	</body>
+
+
+
+<!-- <div id="sinwave-animantion"></div> -->
