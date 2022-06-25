@@ -8,37 +8,13 @@
     <div class="row">
         <h1>{{eventListn}}</h1>
     </div>
-    <div *ngIf="interfaceToggle; then clickInterface else voiceInterface"></div>
-    <ng-template #clickInterface >
+    <div>
         <div class="row">
            <div class="col-md-3" id="blue-bandit-conventional" (click)="loadNextIteration(currentResponseIndex, 'blue')"></div>
            <div class="col-md-3" id="blank_image"></div>
            <div class="col-md-3" id="red-bandit-conventional" (click)="loadNextIteration(currentResponseIndex, 'red')"></div>
         </div>
-    </ng-template>
-
-    <ng-template #voiceInterface>
-        <div class="row">
-            <div class="col-md-3" *ngIf="!blueBanditselectionToggle" id="blue-bandit-voice"></div>
-            <div class="col-md-3" *ngIf="blueBanditselectionToggle" id="blue-bandit-selected-voice"></div>
-            <div class="col-md-3" id="blank_image"></div>
-            <div class="col-md-3" *ngIf="!redBanditselectionToggle" id="red-bandit-voice"></div>
-            <div class="col-md-3" *ngIf="redBanditselectionToggle" id="red-bandit-selected-voice"></div>
-         </div>
-
-         <div class="row">
-            <div class="col-md-3" *ngIf="interfaceStartButton">
-                <button class="button" (click)="startVoiceGame()"><span>Start</span></button>
-            </div>
-        </div>
-        <!-- <div class="row">
-            <p>{{voiceSelection}}</p>
-            <p>{{iter_index}}</p>
-        </div> -->
-    </ng-template>
-    
-
-    
-</div>
+    </div>
+</div> 
 
 

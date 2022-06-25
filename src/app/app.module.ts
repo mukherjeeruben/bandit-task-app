@@ -9,7 +9,7 @@ import { RawVoiceComponent } from './voice-record-raw/voice-record-raw.component
 import { RawAudioRecordingService } from './voice-record-raw/raw-audio-recording.service';
 import { PageBaseComponent } from './page-base/page-base.component';
 import { GameplayComponent } from './gameplay/gameplay.component';
-import { VoiceTextService } from './gameplay/voice-text.service';
+import { VoiceTextService } from './gameplay-voice-synthesize/voice-text.service';
 
 
 @NgModule({

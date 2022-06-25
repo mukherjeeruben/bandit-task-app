@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IGameData } from '../data.model';
 import { DataService } from '../data.service';
-import { VoiceTextService } from '../gameplay/voice-text.service';
+import { VoiceTextService } from './voice-text.service';
 
 
 @Component({
@@ -63,26 +63,24 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
     this.totalReward = 100;
     this.iter_index = 0;
 
-    // this.initialDesc = `You are walking around in the forest and you have just uncovered a pot of gold with one hundred gold coins in it. 
-    // Unfortunately, your village is beyond the forest. 
-    // You have to navigate through a clump of dense bushes to reach home. 
-    // As you make your way through the forest, you will come upon several junctions.
-    // At each junction, there will be two leprechauns: blue and red . One of them is good, one of them is bad.
-    // But you don’t know which one is which. You must make a choice about which one of them to pass by. You should choose carefully, because one of them will steal gold coins from you and run away.
-    // If you choose to pass by the “thief” leprechaun, you will lose the number of gold coins shown below each.
-    // If you choose to pass by the other leprechaun, you won’t lose any gold coins.
-    // The aim of this game is to arrive at your village with as many of your gold coins as possible.
-    // There will be many junctions like this, one after another. 
-    // You will be able to learn from the outcomes of your choices at previous junctions which leprechaun (red or blue) is stealing more often than the other.
-    // To make the game a bit more challenging, we have added in a bit of randomness. This means that the leprechaun who is currently stealing most, won't steal on each and every trial. But they will steal on most trials.
-    // So you need to learn which leprechaun on average is currently the best one to choose.
-    // Generally, you will want to choose the leprechaun which is least likely to steal from you. 
-    // However, sometimes it might be best to choose the leprechaun which is most likely to steal. Consider the following scenario as an example.
-    // Based on passing through previous junctions you may have learnt that the blue leprechaun is least likely to steal, but the blue leprechaun at this particular junction has a number 65 on him, whereas the red leprechaun has the number 35. In this instance, even though the blue leprechaun may be least likely to steal, if he happens to be the thief at this junction, he will steal 65 coins! 
-    // Hence, you might want to choose the red leprechaun this time because, even though the red leprechaun is more likely to steal, it is better to risk this than the possibility of the blue leprechaun taking 65 coins from you.
-    // Say 'Blue' to select Blue leprechaun and 'Red' to select Red leprechaun`;
-
-    this.initialDesc = `You are walking around in the forest and you have just uncovered a pot of gold`;
+    this.initialDesc = `You are walking around in the forest and you have just uncovered a pot of gold with one hundred gold coins in it. 
+    Unfortunately, your village is beyond the forest. 
+    You have to navigate through a clump of dense bushes to reach home. 
+    As you make your way through the forest, you will come upon several junctions.
+    At each junction, there will be two leprechauns: blue and red . One of them is good, one of them is bad.
+    But you don’t know which one is which. You must make a choice about which one of them to pass by. You should choose carefully, because one of them will steal gold coins from you and run away.
+    If you choose to pass by the “thief” leprechaun, you will lose the number of gold coins shown below each.
+    If you choose to pass by the other leprechaun, you won’t lose any gold coins.
+    The aim of this game is to arrive at your village with as many of your gold coins as possible.
+    There will be many junctions like this, one after another. 
+    You will be able to learn from the outcomes of your choices at previous junctions which leprechaun (red or blue) is stealing more often than the other.
+    To make the game a bit more challenging, we have added in a bit of randomness. This means that the leprechaun who is currently stealing most, won't steal on each and every trial. But they will steal on most trials.
+    So you need to learn which leprechaun on average is currently the best one to choose.
+    Generally, you will want to choose the leprechaun which is least likely to steal from you. 
+    However, sometimes it might be best to choose the leprechaun which is most likely to steal. Consider the following scenario as an example.
+    Based on passing through previous junctions you may have learnt that the blue leprechaun is least likely to steal, but the blue leprechaun at this particular junction has a number 65 on him, whereas the red leprechaun has the number 35. In this instance, even though the blue leprechaun may be least likely to steal, if he happens to be the thief at this junction, he will steal 65 coins! 
+    Hence, you might want to choose the red leprechaun this time because, even though the red leprechaun is more likely to steal, it is better to risk this than the possibility of the blue leprechaun taking 65 coins from you.
+    Say 'Blue' to select Blue leprechaun and 'Red' to select Red leprechaun`;
 
     this.text_loss = 'Opps! Bad Selection.'
 

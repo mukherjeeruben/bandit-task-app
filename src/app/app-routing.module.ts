@@ -6,10 +6,10 @@ import { SurveyComponent } from './survey/survey.component';
 import { GameplayVoiceSynthesizeComponent } from './gameplay-voice-synthesize/gameplay-voice-synthesize.component';
 
 const routes: Routes = [
-  {path: 'bandit-task/:task-type', component: GameplayComponent},
+  {path: 'conventional-task', component: GameplayComponent},
   {path: 'information', component: InformationComponent},
   {path: 'survey', component: SurveyComponent},
-  {path: 'voice-synthesize', component: GameplayVoiceSynthesizeComponent}
+  {path: 'voice-task', component: GameplayVoiceSynthesizeComponent}
 ];
 
 @NgModule({
