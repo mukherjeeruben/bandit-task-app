@@ -6,8 +6,8 @@ import { GamePlayTemplate } from './data.model';
   providedIn: 'root'
 })
 export class DataService {
-  // baseUrl = 'https://bandit-task-api.herokuapp.com'
-  baseUrl = 'http://localhost:5000'
+  baseUrl = 'https://bandit-task-api.herokuapp.com'
+  // baseUrl = 'http://localhost:5000'
 
   constructor(private _http: HttpClient) { }
 
