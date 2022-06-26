@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GamePlayTemplate } from './data.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  baseUrl = 'https://bandit-task-api.herokuapp.com'
+  baseUrl = 'https://bandit-task-api.herokuapp.com';
   // baseUrl = 'http://localhost:5000'
 
   constructor(private _http: HttpClient) { }

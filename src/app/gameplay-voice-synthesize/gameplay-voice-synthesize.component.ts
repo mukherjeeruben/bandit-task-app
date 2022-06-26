@@ -111,8 +111,6 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
    };
 
 
-
-
   public ngOnInit(){
     this.getGameTemplate();
     this.getSpeechVoiceType();
@@ -123,7 +121,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
     let templatetype = 'voice';
     return this.dataService.getGameStaticTemplate(templatetype).subscribe(data => {
       this.staticGameTemplate$ = data;
-      this.templateLength = Object.keys(this.staticGameTemplate$[0]).length;
+      this.templateLength = Object.keys(this.staticGameTemplate$).length;
     });
   }
 
@@ -152,14 +150,14 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 	}
 
   public async speechResponse(reward:number){
-    if(reward < 0){
+    if(reward == 1){
       this.speechAnimation = true;
       await this.synthesizeSpeechFromText(this.text_loss);
       this.speechAnimation = false;
     }
-    else{
+    else if(reward == 0){
       this.speechAnimation = true;
-      await this.synthesizeSpeechFromText(this.text_win);
+      await this.synthesizeSpeechFromText(this.text_win); // TODO change message 
       this.speechAnimation = false;
     }
   }
@@ -195,22 +193,35 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
   // User Data Record Logic Start //
   public async processRecordedData(){
-    let reward = 0;
+    let reward_selection;
     let selection = '';
     let bandit_selection : number = this.filterAudioText(this.voiceTextService.text);
     if(bandit_selection == 0 || bandit_selection == 1){
         this.unrecognized = false;
         if(bandit_selection == 1){
-          reward = this.staticGameTemplate$[0][this.iter_index]['blue'];
-          selection='blue';}
+          reward_selection = this.staticGameTemplate$[this.iter_index]['blue'];
+          selection='blue';
+          if(reward_selection == 1){
+            this.totalReward = this.totalReward - 1;
+           }
+          else if(reward_selection == 0){
+            this.totalReward = this.totalReward;
+           }}
         else {
-          reward = this.staticGameTemplate$[0][this.iter_index]['red'];
-          selection='red';}
-        await this.speechResponse(reward);
-        this.totalReward = this.totalReward + reward;
+          reward_selection = this.staticGameTemplate$[this.iter_index]['red'];
+          selection='red';
+          if(reward_selection == 1){
+            this.totalReward = this.totalReward - 1;
+           }
+          else if(reward_selection == 0){
+            this.totalReward = this.totalReward;
+           }
+        }
+        await this.speechResponse(reward_selection);
+       
         this.userGameData[this.iter_index] = {
             action: selection,
-            reward: reward,
+            reward: reward_selection,
             total_score: this.totalReward
           };
           this.iter_index += 1;

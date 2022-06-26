@@ -33,19 +33,27 @@ public loadNextIteration(responseIndex: number, selection: string)
       let reward_selection;
       if(selection == 'blue'){
         reward_selection = this.staticGameTemplate$[this.currentResponseIndex]['blue'];
+        if(reward_selection == 1){
+          this.totalReward = this.totalReward - 1;
+          // Opps coins lost
+         }
+        else if(reward_selection == 0){
+          this.totalReward = this.totalReward;
+          // coins saved Saved 
+         }
       }
       else{
         reward_selection = this.staticGameTemplate$[this.currentResponseIndex]['red'];
+        if(reward_selection == 1){
+          this.totalReward = this.totalReward - 1;
+          // Opps coins lost
+         }
+        else if(reward_selection == 0){
+          this.totalReward = this.totalReward;
+          // coins saved Saved 
+         }
       }
-      if(reward_selection == 1){
-        this.totalReward = this.totalReward - 1;
-        // Opps coins lost
-      }
-      else if(reward_selection == 0){
-        this.totalReward = this.totalReward;
-        // coins saved Saved 
-      }
-        
+      
         this.userGameData[this.currentResponseIndex] = {
           action: selection,
           reward: reward_selection,
@@ -58,7 +66,7 @@ public loadNextIteration(responseIndex: number, selection: string)
       this.dataService.postUserGameData(this.userGameData).subscribe(
         data =>{ this.successResponse$ = data;
           console.log('Data Saved Successfully');
-          this.eventListn = 'Thanks for Playing !';}  // TODO check this.successResponse$ not getting assigned
+          this.eventListn = 'Thanks for Playing !';}  // TODO check this.successResponse$ not getting assigned 
       )
     }
 }
