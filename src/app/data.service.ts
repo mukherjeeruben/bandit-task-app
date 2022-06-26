@@ -6,12 +6,13 @@ import { GamePlayTemplate } from './data.model';
   providedIn: 'root'
 })
 export class DataService {
-  baseUrl = 'https://bandit-task-api.herokuapp.com'
+  // baseUrl = 'https://bandit-task-api.herokuapp.com'
+  baseUrl = 'http://localhost:5000'
 
   constructor(private _http: HttpClient) { }
 
-  getGameStaticTemplate(){
-    return this._http.get<any>(this.baseUrl + '/StaticGameTemplate/get');
+  getGameStaticTemplate(templatetype:string){
+    return this._http.get<any>(this.baseUrl + '/StaticGameTemplate/getTemplate/'+templatetype);
   }
 
   postUserGameData(userGameData:any){

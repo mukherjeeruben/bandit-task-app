@@ -120,7 +120,8 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
 
   getGameTemplate(){
-    return this.dataService.getGameStaticTemplate().subscribe(data => {
+    let templatetype = 'voice';
+    return this.dataService.getGameStaticTemplate(templatetype).subscribe(data => {
       this.staticGameTemplate$ = data;
       this.templateLength = Object.keys(this.staticGameTemplate$[0]).length;
     });
