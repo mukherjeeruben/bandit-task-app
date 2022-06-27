@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IGameData } from '../data.model';
 import { DataService } from '../data.service';
 import { VoiceTextService } from './voice-text.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -48,7 +49,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
   public playButton :boolean;
   // Button Toggle variables
 
-  constructor(private dataService:DataService, public voiceTextService : VoiceTextService) {
+  constructor(private dataService:DataService, public voiceTextService : VoiceTextService, private router: Router) {
     this.templatetype = 'voice';
     this.voiceTextService.init();
     this.utterance = new SpeechSynthesisUtterance();
@@ -279,6 +280,7 @@ public async startGame() {
         console.log('Data Inserted Succesfully!');}
     )
     await this.onSuccessgameEnd();
+    this.loadNextRoute();
   }
 }
 
@@ -290,7 +292,8 @@ public filterAudioText(rawText:string): number{
   if(textSet.includes('blue') || 
       textSet.includes('blue leprechaun') || 
       textSet.includes('the blue leprechaun') ||
-      textSet.includes('i select blue leprechaun') || 
+      textSet.includes('i select blue leprechaun') ||
+      textSet.includes('i select the blue leprechaun') || 
       textSet.includes('i select blue')|| 
       textSet.includes('select blue') || 
       textSet.includes('i select blue one') || 
@@ -304,7 +307,8 @@ public filterAudioText(rawText:string): number{
   else if(textSet.includes('red')|| 
           textSet.includes('red leprechaun') || 
           textSet.includes('the red leprechaun') || 
-          textSet.includes('i select red leprechaun')|| 
+          textSet.includes('i select red leprechaun')||
+          textSet.includes('i select the red leprechaun') || 
           textSet.includes('i select red')|| 
           textSet.includes('select red') || 
           textSet.includes('i select red one') || 
@@ -320,5 +324,18 @@ public filterAudioText(rawText:string): number{
   }
 }
 // Game Driving Logic End //
+
+public loadNextRoute(){
+  if(localStorage.getItem('reroute') == 'true'){
+    let nextRoute = localStorage.getItem('loadNext');
+    localStorage.setItem('reroute', 'false');
+    this.router.navigate([nextRoute]);
+  }
+  else{
+    sessionStorage.clear();
+    localStorage.clear();
+    this.router.navigate(['/home']);
+  }
+ }
 
 }

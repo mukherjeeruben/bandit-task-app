@@ -33,8 +33,8 @@ export class InformationComponent {
     let recorded_data = {user_id : sessionStorage.getItem('UserId'),
                          consent_data:  information_data};
 
-    this.dataService.postUserConsentData(recorded_data).subscribe()                     
-    this.router.navigate(['/conventional-task']);
+    this.dataService.postUserConsentData(recorded_data).subscribe();
+    this.loadNextRoute();
  }
 
  public checkform(){
@@ -50,6 +50,19 @@ export class InformationComponent {
       this.enableButton = true;
     }
   
+ }
+
+ public loadNextRoute(){
+  let nextRoute = localStorage.getItem('loadNext');
+  let gameRoutes = JSON.parse(localStorage.getItem('components')|| '{}');
+
+  const index = gameRoutes.indexOf(nextRoute, 0);
+  if (index > -1) {
+    gameRoutes.splice(index, 1);
+  }
+
+  localStorage.setItem('loadNext', gameRoutes[0]);
+  this.router.navigate([nextRoute]);
  }
 
 }

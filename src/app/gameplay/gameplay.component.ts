@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IGameData } from '../data.model';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class GameplayComponent implements OnInit {
 
   userGameData: {[iteration_number:number]: IGameData} = {};
 
-  constructor(private dataService:DataService) {
+  constructor(private dataService:DataService, private router: Router) {
     this.templateLength = 0;
     this.eventListn='';
     this.templatetype = 'conventional'; 
@@ -77,6 +78,7 @@ public loadNextIteration(responseIndex: number, selection: string)
           console.log('Data Saved Successfully');
           this.eventListn = 'Thanks for Playing !';}  // TODO check this.successResponse$ not getting assigned 
       )
+      this.loadNextRoute();
     }
 }
 
@@ -90,5 +92,18 @@ getGameTemplate(){
 ngOnInit() {
   this.getGameTemplate();
 }
+
+public loadNextRoute(){
+  if(localStorage.getItem('reroute') == 'true'){
+    let nextRoute = localStorage.getItem('loadNext');
+    localStorage.setItem('reroute', 'false');
+    this.router.navigate([nextRoute]);
+  }
+  else{
+    sessionStorage.clear();
+    localStorage.clear();
+    this.router.navigate(['/home']);
+  }
+ }
 
 }

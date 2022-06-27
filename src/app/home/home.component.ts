@@ -25,7 +25,16 @@ export class HomeComponent implements OnInit {
   }
 
   public createUserId() {
+    this.setGameplayRoutes();
     sessionStorage.setItem('UserId', this.userId$);
     this.router.navigate(['/information']);
+}
+
+public setGameplayRoutes(){
+  const gameComponents = ['/voice-task', '/conventional-task']
+  const random = Math.floor(Math.random() * gameComponents.length);
+  localStorage.setItem('components', JSON.stringify(gameComponents));
+  localStorage.setItem('loadNext', gameComponents[random]);
+  localStorage.setItem('reroute', 'true');
 }
 }
