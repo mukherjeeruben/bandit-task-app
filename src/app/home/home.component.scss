@@ -1,38 +1,14 @@
-.styled-table {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 400px;
-    color: #212529;
-}
-
-.styled-table th,
-.styled-table td {
-    padding: 12px 15px;
-}
-
-h1 { 
-    display: block;
-    font-size: 1.7em;
-    margin-top: 0.67em;
-    margin-bottom: 0.67em;
-    margin-left: 0;
-    margin-right: 0;
-    text-align:center;
-    font-family: sans-serif;
-  }
-
-
-  #submit-button {  
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+#begin-button {  
+    left: 50%;
+    top: 50%;
+    margin-top: 0%;   
+    margin-left: -8%; 
+    position: fixed;     
   }
 
   .glow-on-hover {
-    width: 150px;
-    height: 30px;
+    width: 220px;
+    height: 50px;
     outline: none;
     color: rgb(0, 0, 0);
     background: rgb(255, 255, 255);
@@ -90,7 +66,3 @@ h1 {
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
 }
-
-
-
-

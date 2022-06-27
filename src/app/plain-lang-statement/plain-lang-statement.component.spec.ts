@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SurveyComponent } from './survey.component';
+import { PlainLangStatementComponent } from './plain-lang-statement.component';
 
-describe('SurveyComponent', () => {
-  let component: SurveyComponent;
-  let fixture: ComponentFixture<SurveyComponent>;
+describe('PlainLangStatementComponent', () => {
+  let component: PlainLangStatementComponent;
+  let fixture: ComponentFixture<PlainLangStatementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SurveyComponent ]
+      declarations: [ PlainLangStatementComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SurveyComponent);
+    fixture = TestBed.createComponent(PlainLangStatementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
