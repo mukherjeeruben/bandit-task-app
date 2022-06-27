@@ -65,7 +65,7 @@ h1 {
     color: #000
 }
 
-.glow-on-hover:active:after {
+.glow-on-hover:active:after{
     background: transparent;
 }
 
@@ -89,6 +89,11 @@ h1 {
     0% { background-position: 0 0; }
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
+}
+
+
+input[type=radio]:hover {
+    cursor: pointer;
 }
 
 

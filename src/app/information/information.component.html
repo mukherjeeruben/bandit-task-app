@@ -9,67 +9,67 @@
                 <th>No</th>
                 <tr>
                     <td>I understand all of the details outlined in the <a [routerLink]="['/plain-lang-statement']">Plain Language Statement</a>.</td>
-                    <td><input type="radio" value="yes" (onclick)="checkform(this)" name="response1" ngModel required></td>
-                    <td><input type="radio" value="no" (onclick)="checkform(this)" name="response1" ngModel required></td>
+                    <td><input type="radio" value="yes" (click)="checkform()" name="response1" ngModel required></td>
+                    <td><input type="radio" value="no" (click)="checkform()" name="response1" ngModel required></td>
                 </tr>
 
                 <tr>
                     <td>I understand that participation in this study is completely voluntary and I am under no obligation to participate in this study.</td>
-                    <td><input type="radio" value="yes" (onclick)="checkform(this)" name="response2" ngModel required></td>
-                    <td><input type="radio" value="no" (onclick)="checkform(this)" name="response2" ngModel required></td>
+                    <td><input type="radio" value="yes" (click)="checkform()" name="response2" ngModel required></td>
+                    <td><input type="radio" value="no" (click)="checkform()" name="response2" ngModel required></td>
                 </tr>
 
                 <tr>
                     <td>I understand that I have the right to withdraw from this study at any time and I do not need to provide an explanation for doing so.</td>
-                    <td><input type="radio" value="yes" (onclick)="checkform(this)" name="response3" ngModel required></td>
-                    <td><input type="radio" value="no" (onclick)="checkform(this)" name="response3" ngModel required></td>
+                    <td><input type="radio" value="yes" (click)="checkform()" name="response3" ngModel required></td>
+                    <td><input type="radio" value="no" (click)="checkform()" name="response3" ngModel required></td>
                 </tr>
 
                 <tr>
                     <td>I understand that information is being obtained for the purpose of a learning activity for the MSc programme in Artificial Intelligence and the data collected may be published.</td>
-                    <td><input type="radio" value="yes" (onclick)="checkform(this)" name="response4" ngModel required></td>
-                    <td><input type="radio" value="no" (onclick)="checkform(this)" name="response4" ngModel required></td>
+                    <td><input type="radio" value="yes" (click)="checkform()" name="response4" ngModel required></td>
+                    <td><input type="radio" value="no" (click)="checkform()" name="response4" ngModel required></td>
                 </tr>
 
                 <tr>
                     <td>I am aware that I can also withdraw my data from the study should I feel the need to do so, until the point of submission.</td>
-                    <td><input type="radio" value="yes" (onclick)="checkform(this)" name="response5" ngModel required></td>
-                    <td><input type="radio" value="no" (onclick)="checkform(this)" name="response5" ngModel required></td>
+                    <td><input type="radio" value="yes" (click)="checkform()" name="response5" ngModel required></td>
+                    <td><input type="radio" value="no" (click)="checkform()" name="response5" ngModel required></td>
                 </tr>
 
                 <tr>
                     <td>I understand that all of the data collected will be kept confidential.</td>
-                    <td><input type="radio" value="yes" (onclick)="checkform(this)" name="response6" ngModel required></td>
-                    <td><input type="radio" value="no" (onclick)="checkform(this)" name="response6" ngModel required></td>
+                    <td><input type="radio" value="yes" (click)="checkform()" name="response6" ngModel required></td>
+                    <td><input type="radio" value="no" (click)="checkform()" name="response6" ngModel required></td>
                 </tr>
 
                 <tr>
                     <td>I understand that no identifying information will be collected in the course of the study.</td>
-                    <td><input type="radio" value="yes" (onclick)="checkform(this)" name="response7" ngModel required></td>
-                    <td><input type="radio" value="no" (onclick)="checkform(this)" name="response7" ngModel required></td>
+                    <td><input type="radio" value="yes" (click)="checkform()" name="response7" ngModel required></td>
+                    <td><input type="radio" value="no" (click)="checkform()" name="response7" ngModel required></td>
                 </tr>
 
                 <tr>
                     <td>I understand that I can contact any of the researchers listed above should I require any further information.</td>
-                    <td><input type="radio" value="yes" (onclick)="checkform(this)" name="response8" ngModel required></td>
-                    <td><input type="radio" value="no" (onclick)="checkform(this)" name="response8" ngModel required></td>
+                    <td><input type="radio" value="yes" (click)="checkform()" name="response8" ngModel required></td>
+                    <td><input type="radio" value="no" (click)="checkform()" name="response8" ngModel required></td>
                 </tr>
 
                 <tr>
                     <td>I am over the age of 18.</td>
-                    <td><input type="radio" value="yes" (onclick)="checkform(this)" name="response9" ngModel required></td>
-                    <td><input type="radio" value="no" (onclick)="checkform(this)" name="response9" ngModel required></td>
+                    <td><input type="radio" value="yes" (click)="checkform()" name="response9" ngModel required></td>
+                    <td><input type="radio" value="no" (click)="checkform()" name="response9" ngModel required></td>
                 </tr>
 
                 <tr>
                     <td>I consent to taking part in this study.</td>
-                    <td><input type="radio" value="yes" (onclick)="checkform(this)" name="response10" ngModel required></td>
-                    <td><input type="radio" value="no" (onclick)="checkform(this)" name="response10" ngModel required></td>
+                    <td><input type="radio" value="yes" (click)="checkform()" name="response10" ngModel required></td>
+                    <td><input type="radio" value="no" (click)="checkform()" name="response10" ngModel required></td>
                 </tr>
             </table>
           </div>
-          <div id ="submit-button">
-            <button id="submit" class="glow-on-hover" name="submit" disabled>
+          <div id ="submit-button" *ngIf="enableButton">
+            <button id="submit" class="glow-on-hover" name="submit">
                 Submit
             </button>
         </div>

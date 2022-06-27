@@ -15,6 +15,7 @@ export class GameplayComponent implements OnInit {
   successResponse$:any;
   templateLength:number;
   eventListn:string;
+  templatetype: string;
 
   medium_type: string = '';
   iter_index:number = 0;
@@ -24,6 +25,7 @@ export class GameplayComponent implements OnInit {
   constructor(private dataService:DataService) {
     this.templateLength = 0;
     this.eventListn='';
+    this.templatetype = 'conventional'; 
    }
 
 public loadNextIteration(responseIndex: number, selection: string)
@@ -63,7 +65,14 @@ public loadNextIteration(responseIndex: number, selection: string)
     }
     else if(this.currentResponseIndex == this.templateLength)
     {
-      this.dataService.postUserGameData(this.userGameData).subscribe(
+      const now = new Date();
+      let userResponse = {
+        interface_type : this.templatetype,
+        user_id: sessionStorage.getItem('UserId'),
+        game_data : this.userGameData,
+        creation_time: now
+      };
+      this.dataService.postUserGameData(userResponse).subscribe(
         data =>{ this.successResponse$ = data;
           console.log('Data Saved Successfully');
           this.eventListn = 'Thanks for Playing !';}  // TODO check this.successResponse$ not getting assigned 
@@ -72,8 +81,7 @@ public loadNextIteration(responseIndex: number, selection: string)
 }
 
 getGameTemplate(){
-  let templatetype = 'conventional';
-  return this.dataService.getGameStaticTemplate(templatetype).subscribe(data => {
+  return this.dataService.getGameStaticTemplate(this.templatetype).subscribe(data => {
     this.staticGameTemplate$ = data;
     this.templateLength = Object.keys(this.staticGameTemplate$).length;
   });

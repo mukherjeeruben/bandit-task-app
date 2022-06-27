@@ -14,6 +14,8 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
   staticGameTemplate$: any;
   templateLength:number;
+
+  public templatetype:string;
   
   public utterance: any;
   public selectedRate: number;
@@ -47,6 +49,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
   // Button Toggle variables
 
   constructor(private dataService:DataService, public voiceTextService : VoiceTextService) {
+    this.templatetype = 'voice';
     this.voiceTextService.init();
     this.utterance = new SpeechSynthesisUtterance();
 
@@ -118,8 +121,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
 
   getGameTemplate(){
-    let templatetype = 'voice';
-    return this.dataService.getGameStaticTemplate(templatetype).subscribe(data => {
+    return this.dataService.getGameStaticTemplate(this.templatetype).subscribe(data => {
       this.staticGameTemplate$ = data;
       this.templateLength = Object.keys(this.staticGameTemplate$).length;
     });
@@ -265,7 +267,14 @@ public async startGame() {
     
   }
   if(this.iter_index == this.templateLength - 1){
-    this.dataService.postUserGameData(this.userGameData).subscribe(
+    const now = new Date();
+    let userResponse  = {
+        interface_type : this.templatetype,
+        user_id: sessionStorage.getItem('UserId'),
+        game_data : this.userGameData,
+        creation_time: now
+      };
+    this.dataService.postUserGameData(userResponse).subscribe(
       data =>{ 
         console.log('Data Inserted Succesfully!');}
     )
