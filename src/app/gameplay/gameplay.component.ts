@@ -10,49 +10,72 @@ import { Router } from '@angular/router';
   styleUrls: ['./gameplay.component.scss']
 })
 export class GameplayComponent implements OnInit {
-  totalReward = 100;
-  currentResponseIndex=0;
-  staticGameTemplate$: any;
-  successResponse$:any;
-  templateLength:number;
-  eventListn:string;
-  templatetype: string;
+  public totalReward : number;
+  public currentResponseIndex: number;
+  public staticGameTemplate$: any;
+  public successResponse$:any;
+  public templateLength:number;
+  public eventListn:string;
+  public templatetype: string;
+  public delayTime: number;
 
-  medium_type: string = '';
-  iter_index:number = 0;
+  public displayToggle:boolean;
+  public rewardsToggle:boolean;
+  public finalSubmit:boolean;
 
   userGameData: {[iteration_number:number]: IGameData} = {};
 
   constructor(private dataService:DataService, private router: Router) {
+    this.totalReward = 100
+    this.currentResponseIndex=0
     this.templateLength = 0;
     this.eventListn='';
     this.templatetype = 'conventional'; 
+    this.delayTime = 3;
+
+    this.displayToggle=true;
+    this.rewardsToggle=true;
+    this.finalSubmit=true;
    }
 
-public loadNextIteration(responseIndex: number, selection: string)
+public async loadNextIteration(responseIndex: number, selection: string)
 {
     if(this.currentResponseIndex < this.templateLength)
     {
       let reward_selection;
       if(selection == 'blue'){
         reward_selection = this.staticGameTemplate$[this.currentResponseIndex]['blue'];
+        this.displayToggle=false;
         if(reward_selection == 1){
           this.totalReward = this.totalReward - 1;
+          this.rewardsToggle=true;
+          await new Promise(f => setTimeout(f, this.delayTime * 1000));
+          this.displayToggle=true;
           // Opps coins lost
          }
         else if(reward_selection == 0){
           this.totalReward = this.totalReward;
+          this.rewardsToggle=false;
+          await new Promise(f => setTimeout(f, this.delayTime * 1000));
+          this.displayToggle=true;
           // coins saved Saved 
          }
       }
       else{
         reward_selection = this.staticGameTemplate$[this.currentResponseIndex]['red'];
+        this.displayToggle=false;
         if(reward_selection == 1){
           this.totalReward = this.totalReward - 1;
+          this.rewardsToggle=true;
+          await new Promise(f => setTimeout(f, this.delayTime * 1000));
+          this.displayToggle=true;
           // Opps coins lost
          }
         else if(reward_selection == 0){
           this.totalReward = this.totalReward;
+          this.rewardsToggle=false;
+          await new Promise(f => setTimeout(f, this.delayTime * 1000));
+          this.displayToggle=true;
           // coins saved Saved 
          }
       }
@@ -76,8 +99,10 @@ public loadNextIteration(responseIndex: number, selection: string)
       this.dataService.postUserGameData(userResponse).subscribe(
         data =>{ this.successResponse$ = data;
           console.log('Data Saved Successfully');
-          this.eventListn = 'Thanks for Playing !';}  // TODO check this.successResponse$ not getting assigned 
+          this.eventListn = 'Thanks for Playing !';
+          this.finalSubmit=false;}  // TODO check this.successResponse$ not getting assigned 
       )
+      await new Promise(f => setTimeout(f, this.delayTime * 1000));
       this.loadNextRoute();
     }
 }

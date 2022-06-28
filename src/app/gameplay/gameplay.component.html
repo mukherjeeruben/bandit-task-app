@@ -1,3 +1,4 @@
+
 <div id="forest-image" class="container">
     <div class="row">
         <div class="column" id="pot-gold"></div>
@@ -8,13 +9,37 @@
     <div class="row">
         <h1>{{eventListn}}</h1>
     </div>
-    <div>
+    <div *ngIf="finalSubmit">
+    <div *ngIf="displayToggle; then responseSet else resultSet"></div>
+    <ng-template #responseSet >
         <div class="row">
            <div class="col-md-3" id="blue-bandit-conventional" (click)="loadNextIteration(currentResponseIndex, 'blue')"></div>
            <div class="col-md-3" id="blank_image"></div>
            <div class="col-md-3" id="red-bandit-conventional" (click)="loadNextIteration(currentResponseIndex, 'red')"></div>
         </div>
+    </ng-template>
+    <ng-template #resultSet >
+        <div *ngIf="rewardsToggle; then stealbandit else saved"></div>
+        <ng-template #stealbandit>
+            <div class="row">
+                <h1>Opps! Coins Lost</h1>
+            </div>
+        <div class="row">
+           <div class="col-md-3" id="blank_image"></div>
+           <div class="col-md-3" id="steal_bandit"></div>
+           <div class="col-md-3" id="blank_image"></div>
+        </div>
+        </ng-template>
+        <ng-template #saved>
+        <div class="row">
+            <div class="col-md-3" id="blank_image"></div>
+            <div class="col-md-3"><h1>Good Choice! Coins Saved!</h1></div>
+            <div class="col-md-3" id="blank_image"></div>
+         </div>
+        </ng-template>
+    </ng-template>
     </div>
 </div> 
+
 
 
