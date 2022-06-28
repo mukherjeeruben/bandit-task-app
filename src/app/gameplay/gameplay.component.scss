@@ -30,34 +30,31 @@
     height: 20%;
   }
 
-#blue-bandit-conventional {  
+#blue-bandit {  
     content : url("../../assets/images/lep1blue.png");  
     cursor: pointer;
     width: 18%;
     height: 18%;
 } 
 
-#red-bandit-conventional {  
+#blue-bandit:hover{
+  filter:drop-shadow(3px 3px 0 #1e41cf) drop-shadow(-3px -3px 0 #1e41cf);
+}
+
+#red-bandit {  
     content : url("../../assets/images/lep2red.png");  
     cursor: pointer;
     width: 18%;
     height: 18%;
 } 
 
-// #pot-gold {  
-//     background-image : url("../../assets/images/PotGold.png");  
-//     background-repeat: no-repeat;
-//     background-position: center;
-//     width: 100%; // any width
-//     height: 100%; // any height 
-//     background-size: contain;
-// } 
+#red-bandit:hover{
+  filter:drop-shadow(3px 3px 0 rgb(141, 8, 8)) drop-shadow(-3px -3px 0 rgb(141, 8, 8));
+}
 
-#pot-gold {  
-    content : url("../../assets/images/PotGold.png"); 
-    width: 15%;
-    height: 30%;
-} 
+#final-result{
+  height: 10%
+}
 
 .pot { 
   position: fixed; 
@@ -72,6 +69,7 @@ h2 {
   top: 100px; 
   left: 0; 
   width: 100%; 
+  color: #FFD700;
 }
 
 #steal_bandit{
@@ -83,7 +81,6 @@ h2 {
 #text {
     z-index: 100;
     position: absolute;
-    color: white;
     font-size: 24px;
     font-weight: bold;
     left: 150px;

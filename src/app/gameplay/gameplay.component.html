@@ -2,20 +2,20 @@
 <div id="forest-image" class="container">
     <div class="row">
         <div class="column" id="pot">
-            <img src="../../assets/images/PotGold.png" alt="" />
+            <img src="../../assets/images/PotGold.png" alt="potGold" />
             <h2>{{totalReward}}</h2>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="final-result">
         <h1>{{eventListn}}</h1>
     </div>
     <div *ngIf="finalSubmit">
     <div *ngIf="displayToggle; then responseSet else resultSet"></div>
     <ng-template #responseSet >
         <div class="row">
-           <div class="col-md-3" id="blue-bandit-conventional" (click)="loadNextIteration(currentResponseIndex, 'blue')"></div>
+           <div class="col-md-3" id="blue-bandit" (click)="loadNextIteration(currentResponseIndex, 'blue')"></div>
            <div class="col-md-3" id="blank_image"></div>
-           <div class="col-md-3" id="red-bandit-conventional" (click)="loadNextIteration(currentResponseIndex, 'red')"></div>
+           <div class="col-md-3" id="red-bandit" (click)="loadNextIteration(currentResponseIndex, 'red')"></div>
         </div>
     </ng-template>
     <ng-template #resultSet >
