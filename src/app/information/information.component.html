@@ -66,13 +66,32 @@
                     <td><input type="radio" value="yes" (click)="checkform()" name="response10" ngModel required></td>
                     <td><input type="radio" value="no" (click)="checkform()" name="response10" ngModel required></td>
                 </tr>
+                <tr>
+                    <table>
+                        <tr>
+                            <td>
+                                <select [(ngModel)]="selectedGender" name="gender" (change)="checkform()">
+                                    <option value="" disabled selected><b>Select Gender</b></option>
+                                    <option *ngFor="let gender of genderList" [value]="gender">{{gender}}</option>
+                                </select>
+                            </td>
+                        <td>
+                            <label><b>Enter Age </b></label>
+                            <input type="number" name="age" (change)="checkform()" [(ngModel)]="selectedAge" min="18" max="100" pattern="^[0-9]" >
+                        </td>
+                        <td>
+                            <div id ="submit-button" *ngIf="enableButton">
+                                <button id="submit" class="glow-on-hover" name="submit">
+                                    Submit
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    </table>    
+                </tr>
             </table>
           </div>
-          <div id ="submit-button" *ngIf="enableButton">
-            <button id="submit" class="glow-on-hover" name="submit">
-                Submit
-            </button>
-        </div>
+          
     </form>
 </div>
 </body>

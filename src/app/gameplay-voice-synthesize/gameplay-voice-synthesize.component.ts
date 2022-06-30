@@ -19,10 +19,12 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
   public templatetype:string;
   
   public utterance: any;
+  public allVoicesObtained: any;
   public selectedRate: number;
 	public selectedVoice: SpeechSynthesisVoice | null;
 	public voices: SpeechSynthesisVoice[];
   public unrecognized: boolean;
+  public voicetype:string;
 
   public initialDesc: string;
   public text_loss: string;
@@ -66,6 +68,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
     this.totalReward = 100;
     this.iter_index = 0;
+    this.voicetype = 'Microsoft Emily Online (Natural) - English (Ireland)'
 
     this.initialDesc = `You are walking around in the forest and you have just uncovered a pot of gold with one hundred gold coins in it. 
     Unfortunately, your village is beyond the forest. 
@@ -131,13 +134,27 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
   // Speech Synthesize Code Block Start//
 
+
   public getSpeechVoiceType(){
-    this.voices = speechSynthesis.getVoices();
-		if ( ! this.voices.length ) {
-			speechSynthesis.addEventListener("voiceschanged",() => {
-					this.voices = speechSynthesis.getVoices();
-					this.selectedVoice = (this.voices[8] || null );});
-		}
+    this.allVoicesObtained = new Promise(function (resolve, reject) {
+      let voices = window.speechSynthesis.getVoices();
+      if (voices.length !== 0) {
+        resolve(voices);
+      } else {
+        window.speechSynthesis.addEventListener('voiceschanged', function () {
+          voices = window.speechSynthesis.getVoices();
+          resolve(voices);
+        });
+      }
+    });
+
+    this.allVoicesObtained.then((voices:any) => {
+      Object.keys(voices).forEach(key => {
+        if (voices[key].name === this.voicetype) {
+          this.selectedVoice = voices[key];;
+        }
+    });
+    });
   }
 
 	public async synthesizeSpeechFromText(text: string) {

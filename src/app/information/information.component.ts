@@ -11,7 +11,10 @@ import { DataService } from '../data.service';
 })
 export class InformationComponent {
   public enableButton: boolean;
-
+  genderList: any = ['Male', 'Female', 'Others'];
+  selectedGender:string = '';
+  selectedAge:number=0;
+  
   constructor(private dataService:DataService, private router: Router) {
     this.enableButton = false;
     }
@@ -29,10 +32,12 @@ export class InformationComponent {
       'I am over the age of 18': form.controls['response9'].value,
       'I consent to taking part in this study': form.controls['response10'].value
     }
-
     let recorded_data = {user_id : sessionStorage.getItem('UserId'),
-                         consent_data:  information_data};
+                         consent_data:  information_data,
+                         gender: form.controls['gender'].value,
+                         age:form.controls['age'].value};
 
+    console.log(recorded_data)
     this.dataService.postUserConsentData(recorded_data).subscribe();
     this.loadNextRoute();
  }
@@ -46,8 +51,9 @@ export class InformationComponent {
       // button.disabled = true;
       this.enableButton = false;
     } else {
-      // button.disabled = false ;
+      if(this.selectedGender!='' && this.selectedAge >= 18)
       this.enableButton = true;
+      // button.disabled = false ;
     }
   
  }
