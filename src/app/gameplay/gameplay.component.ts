@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./gameplay.component.scss']
 })
 export class GameplayComponent implements OnInit {
+  public description :string;
   public totalReward : number;
   public currentResponseIndex: number;
   public staticGameTemplate$: any;
@@ -23,6 +24,7 @@ export class GameplayComponent implements OnInit {
   public displayToggle:boolean;
   public rewardsToggle:boolean;
   public finalSubmit:boolean;
+  public templateToggle:boolean;
 
   userGameData: {[iteration_number:number]: IGameData} = {};
 
@@ -38,6 +40,20 @@ export class GameplayComponent implements OnInit {
     this.displayToggle=true;
     this.rewardsToggle=true;
     this.finalSubmit=true;
+    this.templateToggle=true;
+
+    this.description = `You are walking around in the forest and you have just uncovered a pot of gold with one hundred gold coins in it. 
+    Unfortunately, your village is beyond the forest. 
+    You have to navigate through a clump of dense bushes to reach home. 
+    As you make your way through the forest, you will come upon several junctions.
+    At each junction, there will be two leprechauns: blue and red . One of them is good, one of them is bad.
+    But you don’t know which one is which. You must make a choice about which one of them to pass by. You should choose carefully, because one of them will steal gold coins from you and run away. Each leprechaun has some probability of stealing your gold coins.
+    If you choose to pass by the “thief” leprechaun, you will lose a gold coin.
+    If you choose to pass by the other leprechaun, you won’t lose any gold coin.
+    The aim of this game is to arrive at your village with as many of your gold coins as possible.
+    There will be many junctions like this, one after another. 
+    So you need to learn which leprechaun is currently the best one to choose throughout your journey.
+    Select 'Blue' to select the Blue leprechaun and 'Red' to select the Red leprechaun`;
    }
 
 public async loadNextIteration(responseIndex: number, selection: string)
@@ -131,6 +147,9 @@ public loadNextRoute(){
     localStorage.clear();
     this.router.navigate(['/home']);
   }
+ }
+ public startGame(){
+  this.templateToggle=false;
  }
 
 }

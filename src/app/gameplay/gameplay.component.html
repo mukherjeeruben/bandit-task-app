@@ -1,4 +1,17 @@
-
+<div *ngIf="templateToggle; then instructionstemplate else gametemplate"></div>
+<ng-template #instructionstemplate >
+    <body>
+        <p>{{description}}</p>
+        <div id="start-button">
+			<button class="glow-on-hover"
+				type="button"
+				(click)="startGame()">
+				Start Game 
+			</button>
+		</div>
+    </body>
+</ng-template>
+<ng-template #gametemplate >
 <div id="forest-image" class="container">
     <div class="row">
         <div class="column" id="pot">
@@ -40,6 +53,7 @@
     </ng-template>
     </div>
 </div> 
+</ng-template>
 
 
 
