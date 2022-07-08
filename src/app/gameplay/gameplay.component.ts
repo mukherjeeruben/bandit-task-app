@@ -17,7 +17,8 @@ export class GameplayComponent implements OnInit {
   public templateLength:number;
   public eventListn:string;
   public templatetype: string;
-  public delayTime: number;
+  public successDelayTime: number;
+  public lossDelayTime: number;
 
   public displayToggle:boolean;
   public rewardsToggle:boolean;
@@ -31,7 +32,8 @@ export class GameplayComponent implements OnInit {
     this.templateLength = 0;
     this.eventListn='';
     this.templatetype = 'conventional'; 
-    this.delayTime = 3;
+    this.successDelayTime = 2;
+    this.lossDelayTime = 1.5;
 
     this.displayToggle=true;
     this.rewardsToggle=true;
@@ -49,14 +51,14 @@ public async loadNextIteration(responseIndex: number, selection: string)
         if(reward_selection == 1){
           this.totalReward = this.totalReward - 1;
           this.rewardsToggle=true;
-          await new Promise(f => setTimeout(f, this.delayTime * 1000));
+          await new Promise(f => setTimeout(f, this.lossDelayTime * 1000));
           this.displayToggle=true;
           // Opps coins lost
          }
         else if(reward_selection == 0){
           this.totalReward = this.totalReward;
           this.rewardsToggle=false;
-          await new Promise(f => setTimeout(f, this.delayTime * 1000));
+          await new Promise(f => setTimeout(f, this.successDelayTime * 1000));
           this.displayToggle=true;
           // coins saved Saved 
          }
@@ -67,14 +69,14 @@ public async loadNextIteration(responseIndex: number, selection: string)
         if(reward_selection == 1){
           this.totalReward = this.totalReward - 1;
           this.rewardsToggle=true;
-          await new Promise(f => setTimeout(f, this.delayTime * 1000));
+          await new Promise(f => setTimeout(f, this.lossDelayTime * 1000));
           this.displayToggle=true;
           // Opps coins lost
          }
         else if(reward_selection == 0){
           this.totalReward = this.totalReward;
           this.rewardsToggle=false;
-          await new Promise(f => setTimeout(f, this.delayTime * 1000));
+          await new Promise(f => setTimeout(f, this.successDelayTime * 1000));
           this.displayToggle=true;
           // coins saved Saved 
          }
@@ -102,7 +104,7 @@ public async loadNextIteration(responseIndex: number, selection: string)
           this.eventListn = 'Thanks for Playing !';
           this.finalSubmit=false;}  // TODO check this.successResponse$ not getting assigned 
       )
-      await new Promise(f => setTimeout(f, this.delayTime * 1000));
+      await new Promise(f => setTimeout(f, this.successDelayTime * 1000));
       this.loadNextRoute();
     }
 }
