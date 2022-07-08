@@ -15,6 +15,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
   staticGameTemplate$: any;
   templateLength:number;
+  public scoreSpeakIter: number;
 
   public templatetype:string;
   
@@ -31,6 +32,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
   public text_win: string;
   public text_error: string;
   public successGameEndText: string;
+  public firstJunction: string;
   public querySet: string[];
 
   public totalReward: number;
@@ -55,6 +57,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
     this.templatetype = 'voice';
     this.voiceTextService.init();
     this.utterance = new SpeechSynthesisUtterance();
+    this.scoreSpeakIter = 2; // Score speek number after iteration
 
     this.templateLength = 0;
     this.voiceResponseTime = 5;  // Time in Seconds
@@ -94,8 +97,10 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
     this.querySet = [`Now you are at another junction what do you select ? the blue leprechaun or the red leprechaun`,
                     `This junction will take you closer to your destination. Which leprechaun do you select red or the blue leprechaun`,
-                    `Here again you come across a crossing, which leprechaun do you select? the Red one or the blue one`,
-                    `Now which leprechaun do you select?`] 
+                    `Here again you come across a junction, which leprechaun do you select? the Red one or the blue one`,
+                    `Now which leprechaun do you select?`]
+    
+    this.firstJunction = `At your first junction there is a blue leprechaun and a red leprechaun. Which one do you select?`
 
 
     this.recordStartSound = new Audio('../../assets/sounds/recordStartSound.wav');
@@ -191,10 +196,23 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
     this.playButton = true;
   }
 
+  public async initialSelectionResponse(){
+    this.speechAnimation = true;
+    await this.synthesizeSpeechFromText(this.firstJunction);
+    this.speechAnimation = false;
+  }
+
   public async randomSelectionResponse(){
     const random = Math.floor(Math.random() * this.querySet.length);
     this.speechAnimation = true;
     await this.synthesizeSpeechFromText(this.querySet[random]);
+    this.speechAnimation = false;
+  }
+
+  public async gameScoreResponse(){
+    this.speechAnimation = true;
+    let scoreSpeechText = 'You have' + (this.totalReward).toString() + 'coins left'
+    await this.synthesizeSpeechFromText(scoreSpeechText);
     this.speechAnimation = false;
   }
 
@@ -257,7 +275,12 @@ public async startGame() {
   while(this.iter_index < this.templateLength - 1)
   {
     if(!this.unrecognized){
-      await this.randomSelectionResponse();
+      if(this.iter_index==0) {
+        await this.initialSelectionResponse();
+      }
+      else{
+        await this.randomSelectionResponse();
+      }
       this.recordStartSound.play();
       this.voiceTextService.start();
       this.micAnimation = true;
@@ -266,6 +289,9 @@ public async startGame() {
       this.voiceTextService.stop();
       this.micAnimation = false;
       await this.processRecordedData();
+      if((this.iter_index + 1) % this.scoreSpeakIter == 0){
+        await this.gameScoreResponse();
+      }
     }
     else{
       this.recordStartSound.play();
