@@ -80,9 +80,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
     If you choose to pass by the other leprechaun, you won’t lose any gold coin.
     The aim of this game is to arrive at your village with as many of your gold coins as possible.
     There will be many junctions like this, one after another. 
-    You will be able to learn from the outcomes of your choices at previous junctions which leprechaun (red or blue) is stealing more often than the other.
-    To make the game a bit more challenging, we have added in a bit of randomness. This means that the leprechaun who is currently stealing most, won't steal on each and every trial. But they will steal on most trials.
-    So you need to learn which leprechaun on average is currently the best one to choose.
+    So you need to learn which leprechaun is currently the best one to choose throughout your journey.
     
     Say 'Blue' to select the Blue leprechaun and 'Red' to select the Red leprechaun`;
 
@@ -94,9 +92,9 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
     this.successGameEndText = `Thank You for playing the game. You response is saved successfully.`
 
-    this.querySet = [`Now you are at another junction what do you select ? blue leprechaun or red leprechaun`,
+    this.querySet = [`Now you are at another junction what do you select ? the blue leprechaun or the red leprechaun`,
                     `This junction will take you closer to your destination. Which leprechaun do you select red or the blue leprechaun`,
-                    `Here again you come across a crossing, which leprechaun do you select? Red ot the blue one`,
+                    `Here again you come across a crossing, which leprechaun do you select? the Red one or the blue one`,
                     `Now which leprechaun do you select?`] 
 
 
