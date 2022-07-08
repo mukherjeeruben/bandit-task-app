@@ -1,7 +1,17 @@
 <div *ngIf="templateToggle; then instructionstemplate else gametemplate"></div>
+
 <ng-template #instructionstemplate >
+   
     <body>
-        <p>{{description}}</p>
+        <h1>Instructions</h1>
+          <div id="divdesc">
+              {{description}}
+          </div>
+        <div class="row">
+            <div class="col-md-3" id="blue-bandit-static" ></div>
+            <div class="col-md-3" id="blank_image"></div>
+            <div class="col-md-3" id="red-bandit-static"></div>
+         </div>
         <div id="start-button">
 			<button class="glow-on-hover"
 				type="button"

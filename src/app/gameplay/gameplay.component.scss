@@ -41,6 +41,12 @@
   filter:drop-shadow(3px 3px 0 #1e41cf) drop-shadow(-3px -3px 0 #1e41cf);
 }
 
+#blue-bandit-static{
+    content : url("../../assets/images/lep1blue.png");  
+    width: 18%;
+    height: 18%;
+}
+
 #red-bandit {  
     content : url("../../assets/images/lep2red.png");  
     cursor: pointer;
@@ -50,6 +56,12 @@
 
 #red-bandit:hover{
   filter:drop-shadow(3px 3px 0 rgb(141, 8, 8)) drop-shadow(-3px -3px 0 rgb(141, 8, 8));
+}
+
+#red-bandit-static{
+  content : url("../../assets/images/lep2red.png");  
+  width: 18%;
+  height: 18%;
 }
 
 #final-result{
@@ -62,6 +74,17 @@
 
 img{
   height: 200px;
+}
+
+h1 { 
+  display: block;
+  font-size: 1.7em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  text-align:center;
+  font-family: sans-serif;
 }
 
 h2 { 
@@ -90,9 +113,20 @@ h2 {
   #start-button {  
     left: 50%;
     top: 50%;
-    margin-top: 0%;   
-    margin-left: -8%; 
+    margin-top: 8%;   
+    margin-left: -5.5%; 
     position: fixed;     
+  }
+
+  #divdesc{
+    display: flex;
+    padding-left: 300px;
+    padding-right: 300px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    line-height: 2;
+    font-size: 0.9em;
+    font-family: sans-serif;
   }
 
 
