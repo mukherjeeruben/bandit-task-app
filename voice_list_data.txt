@@ -1,0 +1,709 @@
+All voices: [
+  {
+    "voiceURI": "Microsoft David - English (United States)",
+    "name": "Microsoft David - English (United States)",
+    "lang": "en-US",
+    "localService": true,
+    "default": true
+  },
+  {
+    "voiceURI": "Microsoft Sean - English (Ireland)",
+    "name": "Microsoft Sean - English (Ireland)",
+    "lang": "en-IE",
+    "localService": true,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Mark - English (United States)",
+    "name": "Microsoft Mark - English (United States)",
+    "lang": "en-US",
+    "localService": true,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Zira - English (United States)",
+    "name": "Microsoft Zira - English (United States)",
+    "lang": "en-US",
+    "localService": true,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Adri Online (Natural) - Afrikaans (South Africa)",
+    "name": "Microsoft Adri Online (Natural) - Afrikaans (South Africa)",
+    "lang": "af-ZA",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Mekdes Online (Natural) - Amharic (Ethiopia)",
+    "name": "Microsoft Mekdes Online (Natural) - Amharic (Ethiopia)",
+    "lang": "am-ET",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Salma Online (Natural) - Arabic (Egypt)",
+    "name": "Microsoft Salma Online (Natural) - Arabic (Egypt)",
+    "lang": "ar-EG",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Zariyah Online (Natural) - Arabic (Saudi Arabia)",
+    "name": "Microsoft Zariyah Online (Natural) - Arabic (Saudi Arabia)",
+    "lang": "ar-SA",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Nabanita Online (Natural) - Bangla (Bangladesh)",
+    "name": "Microsoft Nabanita Online (Natural) - Bangla (Bangladesh)",
+    "lang": "bn-BD",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Tanishaa Online (Natural) - Bengali (India)",
+    "name": "Microsoft Tanishaa Online (Natural) - Bengali (India)",
+    "lang": "bn-IN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Kalina Online (Natural) - Bulgarian (Bulgaria)",
+    "name": "Microsoft Kalina Online (Natural) - Bulgarian (Bulgaria)",
+    "lang": "bg-BG",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Nilar Online (Natural) - Burmese (Myanmar)",
+    "name": "Microsoft Nilar Online (Natural) - Burmese (Myanmar)",
+    "lang": "my-MM",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Joana Online (Natural) - Catalan (Spain)",
+    "name": "Microsoft Joana Online (Natural) - Catalan (Spain)",
+    "lang": "ca-ES",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft HiuMaan Online (Natural) - Chinese (Hong Kong)",
+    "name": "Microsoft HiuMaan Online (Natural) - Chinese (Hong Kong)",
+    "lang": "zh-HK",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Xiaoxiao Online (Natural) - Chinese (Mainland)",
+    "name": "Microsoft Xiaoxiao Online (Natural) - Chinese (Mainland)",
+    "lang": "zh-CN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Xiaoyi Online (Natural) - Chinese (Mainland)",
+    "name": "Microsoft Xiaoyi Online (Natural) - Chinese (Mainland)",
+    "lang": "zh-CN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Yunjian Online (Natural) - Chinese (Mainland)",
+    "name": "Microsoft Yunjian Online (Natural) - Chinese (Mainland)",
+    "lang": "zh-CN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Yunxi Online (Natural) - Chinese (Mainland)",
+    "name": "Microsoft Yunxi Online (Natural) - Chinese (Mainland)",
+    "lang": "zh-CN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Yunxia Online (Natural) - Chinese (Mainland)",
+    "name": "Microsoft Yunxia Online (Natural) - Chinese (Mainland)",
+    "lang": "zh-CN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Yunyang Online (Natural) - Chinese (Mainland)",
+    "name": "Microsoft Yunyang Online (Natural) - Chinese (Mainland)",
+    "lang": "zh-CN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft HsiaoChen Online (Natural) - Chinese (Taiwan)",
+    "name": "Microsoft HsiaoChen Online (Natural) - Chinese (Taiwan)",
+    "lang": "zh-TW",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Gabrijela Online (Natural) - Croatian (Croatia)",
+    "name": "Microsoft Gabrijela Online (Natural) - Croatian (Croatia)",
+    "lang": "hr-HR",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Vlasta Online (Natural) - Czech (Czech)",
+    "name": "Microsoft Vlasta Online (Natural) - Czech (Czech)",
+    "lang": "cs-CZ",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Christel Online (Natural) - Danish (Denmark)",
+    "name": "Microsoft Christel Online (Natural) - Danish (Denmark)",
+    "lang": "da-DK",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Dena Online (Natural) - Dutch (Belgium)",
+    "name": "Microsoft Dena Online (Natural) - Dutch (Belgium)",
+    "lang": "nl-BE",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Colette Online (Natural) - Dutch (Netherlands)",
+    "name": "Microsoft Colette Online (Natural) - Dutch (Netherlands)",
+    "lang": "nl-NL",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Natasha Online (Natural) - English (Australia)",
+    "name": "Microsoft Natasha Online (Natural) - English (Australia)",
+    "lang": "en-AU",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Clara Online (Natural) - English (Canada)",
+    "name": "Microsoft Clara Online (Natural) - English (Canada)",
+    "lang": "en-CA",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Neerja Online (Natural) - English (India)",
+    "name": "Microsoft Neerja Online (Natural) - English (India)",
+    "lang": "en-IN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Emily Online (Natural) - English (Ireland)",
+    "name": "Microsoft Emily Online (Natural) - English (Ireland)",
+    "lang": "en-IE",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Abeo Online (Natural) - English (Nigeria)",
+    "name": "Microsoft Abeo Online (Natural) - English (Nigeria)",
+    "lang": "en-NG",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Rosa Online (Natural) - English (Philippines)",
+    "name": "Microsoft Rosa Online (Natural) - English (Philippines)",
+    "lang": "en-PH",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Leah Online (Natural) - English (South Africa)",
+    "name": "Microsoft Leah Online (Natural) - English (South Africa)",
+    "lang": "en-ZA",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Sonia Online (Natural) - English (United Kingdom)",
+    "name": "Microsoft Sonia Online (Natural) - English (United Kingdom)",
+    "lang": "en-GB",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Aria Online (Natural) - English (United States)",
+    "name": "Microsoft Aria Online (Natural) - English (United States)",
+    "lang": "en-US",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Guy Online (Natural) - English (United States)",
+    "name": "Microsoft Guy Online (Natural) - English (United States)",
+    "lang": "en-US",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Jenny Online (Natural) - English (United States)",
+    "name": "Microsoft Jenny Online (Natural) - English (United States)",
+    "lang": "en-US",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Anu Online (Natural) - Estonian (Estonia)",
+    "name": "Microsoft Anu Online (Natural) - Estonian (Estonia)",
+    "lang": "et-EE",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Blessica Online (Natural) - Filipino (Philippines)",
+    "name": "Microsoft Blessica Online (Natural) - Filipino (Philippines)",
+    "lang": "fil-PH",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Noora Online (Natural) - Finnish (Finland)",
+    "name": "Microsoft Noora Online (Natural) - Finnish (Finland)",
+    "lang": "fi-FI",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Charline Online (Natural) - French (Belgium)",
+    "name": "Microsoft Charline Online (Natural) - French (Belgium)",
+    "lang": "fr-BE",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Sylvie Online (Natural) - French (Canada)",
+    "name": "Microsoft Sylvie Online (Natural) - French (Canada)",
+    "lang": "fr-CA",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Denise Online (Natural) - French (France)",
+    "name": "Microsoft Denise Online (Natural) - French (France)",
+    "lang": "fr-FR",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Ariane Online (Natural) - French (Switzerland)",
+    "name": "Microsoft Ariane Online (Natural) - French (Switzerland)",
+    "lang": "fr-CH",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Sabela Online (Natural) - Galician (Spain)",
+    "name": "Microsoft Sabela Online (Natural) - Galician (Spain)",
+    "lang": "gl-ES",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Ingrid Online (Natural) - German (Austria)",
+    "name": "Microsoft Ingrid Online (Natural) - German (Austria)",
+    "lang": "de-AT",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Katja Online (Natural) - German (Germany)",
+    "name": "Microsoft Katja Online (Natural) - German (Germany)",
+    "lang": "de-DE",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Leni Online (Natural) - German (Switzerland)",
+    "name": "Microsoft Leni Online (Natural) - German (Switzerland)",
+    "lang": "de-CH",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Athina Online (Natural) - Greek (Greece)",
+    "name": "Microsoft Athina Online (Natural) - Greek (Greece)",
+    "lang": "el-GR",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Dhwani Online (Natural) - Gujarati (India)",
+    "name": "Microsoft Dhwani Online (Natural) - Gujarati (India)",
+    "lang": "gu-IN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Hila Online (Natural) - Hebrew (Israel)",
+    "name": "Microsoft Hila Online (Natural) - Hebrew (Israel)",
+    "lang": "he-IL",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Swara Online (Natural) - Hindi (India)",
+    "name": "Microsoft Swara Online (Natural) - Hindi (India)",
+    "lang": "hi-IN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Noemi Online (Natural) - Hungarian (Hungary)",
+    "name": "Microsoft Noemi Online (Natural) - Hungarian (Hungary)",
+    "lang": "hu-HU",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Gudrun Online (Natural) - Icelandic (Iceland)",
+    "name": "Microsoft Gudrun Online (Natural) - Icelandic (Iceland)",
+    "lang": "is-IS",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Gadis Online (Natural) - Indonesian (Indonesia)",
+    "name": "Microsoft Gadis Online (Natural) - Indonesian (Indonesia)",
+    "lang": "id-ID",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Orla Online (Natural) - Irish(Ireland)",
+    "name": "Microsoft Orla Online (Natural) - Irish(Ireland)",
+    "lang": "ga-IE",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Elsa Online (Natural) - Italian (Italy)",
+    "name": "Microsoft Elsa Online (Natural) - Italian (Italy)",
+    "lang": "it-IT",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Nanami Online (Natural) - Japanese (Japan)",
+    "name": "Microsoft Nanami Online (Natural) - Japanese (Japan)",
+    "lang": "ja-JP",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Siti Online (Natural) - Javanese (Indonesia)",
+    "name": "Microsoft Siti Online (Natural) - Javanese (Indonesia)",
+    "lang": "jv-ID",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Sapna Online (Natural) - Kannada (India)",
+    "name": "Microsoft Sapna Online (Natural) - Kannada (India)",
+    "lang": "kn-IN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Aigul Online (Natural) - Kazakh (Kazakhstan)",
+    "name": "Microsoft Aigul Online (Natural) - Kazakh (Kazakhstan)",
+    "lang": "kk-KZ",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Sreymom Online (Natural) - Khmer (Cambodia)",
+    "name": "Microsoft Sreymom Online (Natural) - Khmer (Cambodia)",
+    "lang": "km-KH",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft SunHi Online (Natural) - Korean (Korea)",
+    "name": "Microsoft SunHi Online (Natural) - Korean (Korea)",
+    "lang": "ko-KR",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Keomany Online (Natural) - Lao (Laos)",
+    "name": "Microsoft Keomany Online (Natural) - Lao (Laos)",
+    "lang": "lo-LA",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Everita Online (Natural) - Latvian (Latvia)",
+    "name": "Microsoft Everita Online (Natural) - Latvian (Latvia)",
+    "lang": "lv-LV",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Ona Online (Natural) - Lithuanian (Lithuania)",
+    "name": "Microsoft Ona Online (Natural) - Lithuanian (Lithuania)",
+    "lang": "lt-LT",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Marija Online (Natural) - Macedonian (Republic of North Macedonia)",
+    "name": "Microsoft Marija Online (Natural) - Macedonian (Republic of North Macedonia)",
+    "lang": "mk-MK",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Yasmin Online (Natural) - Malay (Malaysia)",
+    "name": "Microsoft Yasmin Online (Natural) - Malay (Malaysia)",
+    "lang": "ms-MY",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Sobhana Online (Natural) - Malayalam (India)",
+    "name": "Microsoft Sobhana Online (Natural) - Malayalam (India)",
+    "lang": "ml-IN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Grace Online (Natural) - Maltese (Malta)",
+    "name": "Microsoft Grace Online (Natural) - Maltese (Malta)",
+    "lang": "mt-MT",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Aarohi Online (Natural) - Marathi (India)",
+    "name": "Microsoft Aarohi Online (Natural) - Marathi (India)",
+    "lang": "mr-IN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Pernille Online (Natural) - Norwegian (Bokmål, Norway)",
+    "name": "Microsoft Pernille Online (Natural) - Norwegian (Bokmål, Norway)",
+    "lang": "nb-NO",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Latifa Online (Natural) - Pashto (Afghanistan)",
+    "name": "Microsoft Latifa Online (Natural) - Pashto (Afghanistan)",
+    "lang": "ps-AF",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Dilara Online (Natural) - Persian (Iran)",
+    "name": "Microsoft Dilara Online (Natural) - Persian (Iran)",
+    "lang": "fa-IR",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Zofia Online (Natural) - Polish (Poland)",
+    "name": "Microsoft Zofia Online (Natural) - Polish (Poland)",
+    "lang": "pl-PL",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Francisca Online (Natural) - Portuguese (Brazil)",
+    "name": "Microsoft Francisca Online (Natural) - Portuguese (Brazil)",
+    "lang": "pt-BR",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Raquel Online (Natural) - Portuguese (Portugal)",
+    "name": "Microsoft Raquel Online (Natural) - Portuguese (Portugal)",
+    "lang": "pt-PT",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Alina Online (Natural) - Romanian (Romania)",
+    "name": "Microsoft Alina Online (Natural) - Romanian (Romania)",
+    "lang": "ro-RO",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Svetlana Online (Natural) - Russian (Russia)",
+    "name": "Microsoft Svetlana Online (Natural) - Russian (Russia)",
+    "lang": "ru-RU",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Sophie Online (Natural) - Serbian (Serbia)",
+    "name": "Microsoft Sophie Online (Natural) - Serbian (Serbia)",
+    "lang": "sr-RS",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Thilini Online (Natural) - Sinhala (Sri Lanka)",
+    "name": "Microsoft Thilini Online (Natural) - Sinhala (Sri Lanka)",
+    "lang": "si-LK",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Viktoria Online (Natural) - Slovak (Slovakia)",
+    "name": "Microsoft Viktoria Online (Natural) - Slovak (Slovakia)",
+    "lang": "sk-SK",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Petra Online (Natural) - Slovenian (Slovenia)",
+    "name": "Microsoft Petra Online (Natural) - Slovenian (Slovenia)",
+    "lang": "sl-SI",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Ubax Online (Natural) - Somali (Somalia)",
+    "name": "Microsoft Ubax Online (Natural) - Somali (Somalia)",
+    "lang": "so-SO",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Elena Online (Natural) - Spanish (Argentina)",
+    "name": "Microsoft Elena Online (Natural) - Spanish (Argentina)",
+    "lang": "es-AR",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Salome Online (Natural) - Spanish (Colombia)",
+    "name": "Microsoft Salome Online (Natural) - Spanish (Colombia)",
+    "lang": "es-CO",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Dalia Online (Natural) - Spanish (Mexico)",
+    "name": "Microsoft Dalia Online (Natural) - Spanish (Mexico)",
+    "lang": "es-MX",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Elvira Online (Natural) - Spanish (Spain)",
+    "name": "Microsoft Elvira Online (Natural) - Spanish (Spain)",
+    "lang": "es-ES",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Tuti Online (Natural) - Sundanese (Indonesia)",
+    "name": "Microsoft Tuti Online (Natural) - Sundanese (Indonesia)",
+    "lang": "su-ID",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Zuri Online (Natural) - Swahili (Kenya)",
+    "name": "Microsoft Zuri Online (Natural) - Swahili (Kenya)",
+    "lang": "sw-KE",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Sofie Online (Natural) - Swedish (Sweden)",
+    "name": "Microsoft Sofie Online (Natural) - Swedish (Sweden)",
+    "lang": "sv-SE",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Pallavi Online (Natural) - Tamil (India)",
+    "name": "Microsoft Pallavi Online (Natural) - Tamil (India)",
+    "lang": "ta-IN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Shruti Online (Natural) - Telugu (India)",
+    "name": "Microsoft Shruti Online (Natural) - Telugu (India)",
+    "lang": "te-IN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Premwadee Online (Natural) - Thai (Thailand)",
+    "name": "Microsoft Premwadee Online (Natural) - Thai (Thailand)",
+    "lang": "th-TH",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Emel Online (Natural) - Turkish (Turkey)",
+    "name": "Microsoft Emel Online (Natural) - Turkish (Turkey)",
+    "lang": "tr-TR",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Polina Online (Natural) - Ukrainian (Ukraine)",
+    "name": "Microsoft Polina Online (Natural) - Ukrainian (Ukraine)",
+    "lang": "uk-UA",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Uzma Online (Natural) - Urdu (Pakistan)",
+    "name": "Microsoft Uzma Online (Natural) - Urdu (Pakistan)",
+    "lang": "ur-PK",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Madina Online (Natural) - Uzbek (Uzbekistan)",
+    "name": "Microsoft Madina Online (Natural) - Uzbek (Uzbekistan)",
+    "lang": "uz-UZ",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft HoaiMy Online (Natural) - Vietnamese (Vietnam)",
+    "name": "Microsoft HoaiMy Online (Natural) - Vietnamese (Vietnam)",
+    "lang": "vi-VN",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Nia Online (Natural) - Welsh (United Kingdom)",
+    "name": "Microsoft Nia Online (Natural) - Welsh (United Kingdom)",
+    "lang": "cy-GB",
+    "localService": false,
+    "default": false
+  },
+  {
+    "voiceURI": "Microsoft Thando Online (Natural) - Zulu (South Africa)",
+    "name": "Microsoft Thando Online (Natural) - Zulu (South Africa)",
+    "lang": "zu-ZA",
+    "localService": false,
+    "default": false
+  }
+]
