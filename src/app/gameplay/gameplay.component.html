@@ -9,16 +9,15 @@
           </div>
         <div class="row">
             <div class="col-md-3" id="blue-bandit-static" ></div>
-            <div class="col-md-3" id="blank_image"></div>
+            <div>
+                <button class="glow-on-hover"
+                    type="button"
+                    (click)="startGame()">
+                    Start Game 
+                </button>
+            </div>
             <div class="col-md-3" id="red-bandit-static"></div>
          </div>
-        <div id="start-button">
-			<button class="glow-on-hover"
-				type="button"
-				(click)="startGame()">
-				Start Game 
-			</button>
-		</div>
     </body>
 </ng-template>
 <ng-template #gametemplate >
