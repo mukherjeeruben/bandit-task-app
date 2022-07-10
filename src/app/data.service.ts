@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
-  baseUrl = 'https://bandit-task-api.herokuapp.com';
-  // baseUrl = 'http://localhost:5000'
+  baseUrl = 'https://bandit-task-api.herokuapp.com';  // Prod Env API
+  // baseUrl = 'http://localhost:5000' // Local Env API
 
   constructor(private _http: HttpClient) { }
 
@@ -24,5 +24,11 @@ export class DataService {
 
   postUserConsentData(userConsentData:any){
     return this._http.post(this.baseUrl + '/BaseAppData/record_consent_data',userConsentData);
+  }
+
+  saveRawAudioFile(file:any, fileName: string){
+    const formData = new FormData();
+    formData.append("file", file, fileName);
+    return this._http.post(this.baseUrl + '/BucketService/uploadfile', formData)
   }
 }

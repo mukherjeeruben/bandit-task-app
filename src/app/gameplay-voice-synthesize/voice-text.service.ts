@@ -33,7 +33,7 @@ export class VoiceTextService {
     this.isStoppedSpeechRecog = false;
     this.recognition.start();
     console.log("Speech recognition started")
-    this.recognition.addEventListener('end', (condition:any) => {   // TODO Check
+    this.recognition.addEventListener('end', (condition:any) => {   
       if (this.isStoppedSpeechRecog) {
         this.recognition.stop();
         console.log("End speech recognition")

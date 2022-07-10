@@ -3,13 +3,14 @@ import { IGameData } from '../data.model';
 import { DataService } from '../data.service';
 import { VoiceTextService } from './voice-text.service';
 import { Router } from '@angular/router';
+import { RawAudioRecordingService } from './raw-audio-recording.service';
 
 
 @Component({
   selector: 'app-gameplay-voice-synthesize',
   templateUrl: './gameplay-voice-synthesize.component.html',
   styleUrls: ['./gameplay-voice-synthesize.component.scss'],
-  providers: [VoiceTextService]
+  providers: [VoiceTextService, RawAudioRecordingService]
 })
 export class GameplayVoiceSynthesizeComponent implements OnInit {
 
@@ -53,11 +54,12 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
   public playButton :boolean;
   // Button Toggle variables
 
-  constructor(private dataService:DataService, public voiceTextService : VoiceTextService, private router: Router) {
+
+  constructor(private dataService:DataService, public voiceTextService : VoiceTextService, private router: Router, private rawaudioRecordingService: RawAudioRecordingService) {
     this.templatetype = 'voice';
     this.voiceTextService.init();
     this.utterance = new SpeechSynthesisUtterance();
-    this.scoreSpeakIter = 2; // Score speek number after iteration
+    this.scoreSpeakIter = 2; // TODO Score speek number after iteration -> change to 10 in PROD
 
     this.templateLength = 0;
     this.voiceResponseTime = 5;  // Time in Seconds
@@ -67,7 +69,6 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 		this.selectedRate = 0.9;
     this.voiceSelection ='';
     this.unrecognized = false;
-    
 
     this.totalReward = 100;
     this.iter_index = 0;
@@ -110,8 +111,8 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
     this.speechAnimation = false;
     this.micAnimation = false;
-    this.descriptionButton = true;
-    this.playButton = false;
+    this.descriptionButton = true;   
+    this.playButton = false;  
 
     // Button Toggle variables
 
@@ -177,7 +178,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
     }
     else if(reward == 0){
       this.speechAnimation = true;
-      await this.synthesizeSpeechFromText(this.text_win); // TODO change message 
+      await this.synthesizeSpeechFromText(this.text_win); 
       this.speechAnimation = false;
     }
   }
@@ -257,6 +258,9 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
             reward: reward_selection,
             total_score: this.totalReward
           };
+          if((this.iter_index + 1) % this.scoreSpeakIter == 0){
+            await this.gameScoreResponse();
+          }
           this.iter_index += 1;
           this.voiceTextService.text='';
       }
@@ -271,8 +275,9 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
 // Game Driving Logic Start //
 public async startGame() { 
+  this.startAudioRecording();
   this.playButton = false;
-  while(this.iter_index < this.templateLength - 1)
+  while(this.iter_index < this.templateLength)
   {
     if(!this.unrecognized){
       if(this.iter_index==0) {
@@ -289,9 +294,6 @@ public async startGame() {
       this.voiceTextService.stop();
       this.micAnimation = false;
       await this.processRecordedData();
-      if((this.iter_index + 1) % this.scoreSpeakIter == 0){
-        await this.gameScoreResponse();
-      }
     }
     else{
       this.recordStartSound.play();
@@ -303,23 +305,30 @@ public async startGame() {
       this.micAnimation = false;
       await this.processRecordedData();
     }
+
+    console.log('Save data to db');
+
+    if(this.iter_index == this.templateLength - 1){
+      this.iter_index += 1;
+      const now = new Date();
+      let userResponse  = {
+          interface_type : this.templatetype,
+          user_id: sessionStorage.getItem('UserId'),
+          game_data : this.userGameData,
+          creation_time: now
+        };
+      this.dataService.postUserGameData(userResponse).subscribe(
+        data =>{ 
+          console.log('Data Inserted Succesfully!');}
+      )
+      this.stopAudioRecording();
+      await this.saveAudioRecordedData();
+      await this.onSuccessgameEnd();
+      this.loadNextRoute();
+    }
     
   }
-  if(this.iter_index == this.templateLength - 1){
-    const now = new Date();
-    let userResponse  = {
-        interface_type : this.templatetype,
-        user_id: sessionStorage.getItem('UserId'),
-        game_data : this.userGameData,
-        creation_time: now
-      };
-    this.dataService.postUserGameData(userResponse).subscribe(
-      data =>{ 
-        console.log('Data Inserted Succesfully!');}
-    )
-    await this.onSuccessgameEnd();
-    this.loadNextRoute();
-  }
+  
 }
 
 
@@ -375,5 +384,27 @@ public loadNextRoute(){
     this.router.navigate(['/home']);
   }
  }
+
+
+ // Raw Audio Recording Start 
+
+public startAudioRecording() {
+    this.rawaudioRecordingService.startRecording();
+}
+
+public stopAudioRecording() {
+    this.rawaudioRecordingService.stopRecording();
+}
+
+public async saveAudioRecordedData(){
+  this.rawaudioRecordingService.getRecordedBlob().subscribe((data) => {
+  const fileblob = new Blob([data['blob']], { type: "audio/wav" });
+  this.dataService.saveRawAudioFile(fileblob, data['title']).subscribe((event:any) =>{
+    console.log('Raw audio file uploaded successfully to bucket')
+  });
+  });
+}
+
+ // Raw Audio Recording Stop
 
 }

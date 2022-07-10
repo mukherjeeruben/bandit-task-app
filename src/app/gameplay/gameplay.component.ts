@@ -118,7 +118,7 @@ public async loadNextIteration(responseIndex: number, selection: string)
         data =>{ this.successResponse$ = data;
           console.log('Data Saved Successfully');
           this.eventListn = 'Thanks for Playing !';
-          this.finalSubmit=false;}  // TODO check this.successResponse$ not getting assigned 
+          this.finalSubmit=false;}  
       )
       await new Promise(f => setTimeout(f, this.successDelayTime * 1000));
       this.loadNextRoute();
