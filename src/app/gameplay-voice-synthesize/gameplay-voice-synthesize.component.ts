@@ -32,7 +32,6 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
   public text_loss: string;
   public text_win: string;
   public text_error: string;
-  public successGameEndText: string;
   public firstJunction: string;
   public querySet: string[];
 
@@ -72,7 +71,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
     this.totalReward = 100;
     this.iter_index = 0;
-    this.voicetype = 'Microsoft Emily Online (Natural) - English (Ireland)'
+    this.voicetype = 'Microsoft Emily Online (Natural) - English (Ireland)';
 
     this.initialDesc = `You are walking around in the forest and you have just uncovered a pot of gold with one hundred gold coins in it. 
     Unfortunately, your village is beyond the forest. 
@@ -84,23 +83,20 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
     If you choose to pass by the other leprechaun, you won’t lose any gold coins.
     You need to learn which leprechaun is currently the best one to choose throughout your journey.
     The aim of this game is to arrive at your village with as many of your gold coins as possible.
- 
-    Say 'Blue' to select Blue leprechaun and 'Red' to select Red leprechaun';
+    Say 'Blue' to select Blue leprechaun and 'Red' to select Red leprechaun`;
 
-    this.text_loss = 'Oops! you lost a coin'
+    this.text_loss = 'Oops! you lost a coin';
 
-    this.text_win = 'Yay ! Good choice, you did not loose a coin'
+    this.text_win = 'Good choice, you did not loose a coin';
 
-    this.text_error = `Sorry, I couldn't recognoze your response. Can you please try again`
-
-    this.successGameEndText = `Thank You for playing the game. You response is saved successfully.`
+    this.text_error = `Sorry, I couldn't recognoze your response. Can you please try again`;
 
     this.querySet = [`Now you are at another junction what do you select ? the blue leprechaun or the red leprechaun`,
                     `This junction will take you closer to your destination. Which leprechaun do you select red or the blue leprechaun`,
                     `Here again you come across a junction, which leprechaun do you select? the Red one or the blue one`,
-                    `Now which leprechaun do you select?`]
+                    `Now which leprechaun do you select?`];
     
-    this.firstJunction = `At your first junction there is a blue leprechaun and a red leprechaun. Which one do you select?`
+    this.firstJunction = `At your first junction there is a blue leprechaun and a red leprechaun. Which one do you select?`;
 
 
     this.recordStartSound = new Audio('../../assets/sounds/recordStartSound.wav');
@@ -217,8 +213,9 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
   }
 
   public async onSuccessgameEnd(){
+    let successGameEndText = 'You have saved' + this.totalReward.toString() +' Coins. Thank You for playing the game. You response is saved successfully.'
     this.speechAnimation = true;
-    await this.synthesizeSpeechFromText(this.successGameEndText);
+    await this.synthesizeSpeechFromText(successGameEndText);
     this.speechAnimation = false;
   }
 
@@ -307,7 +304,7 @@ public async startGame() {
 
     console.log('Save data to db');
 
-    if(this.iter_index == this.templateLength - 1){
+    if(this.iter_index == this.templateLength){
       this.iter_index += 1;
       const now = new Date();
       let userResponse  = {
