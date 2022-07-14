@@ -59,7 +59,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
     this.templatetype = 'voice';
     this.voiceTextService.init();
     this.utterance = new SpeechSynthesisUtterance();
-    this.scoreSpeakIter = 2; // TODO Score speek number after iteration -> change to 10 in PROD
+    this.scoreSpeakIter = 10; // TODO Score speek number after iteration -> change to 10 in PROD
 
     this.templateLength = 0;
     this.voiceResponseTime = 5;  // Time in Seconds
