@@ -79,14 +79,13 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
     You have to navigate through a clump of dense bushes to reach home. 
     As you make your way through the forest, you will come upon several junctions.
     At each junction, there will be two leprechauns: blue and red . One of them is good, one of them is bad.
-    But you don’t know which one is which. You must make a choice about which one of them to pass by. You should choose carefully, because one of them will steal gold coins from you and run away. Each leprechaun has some probability of stealing your gold coins.
+    But you don’t know which one is which. You must make a choice about which one of them to pass by. You should choose carefully, because one of them will steal gold coins from you and run away.    Each leprechaun has some probability of stealing your gold coins.
     If you choose to pass by the “thief” leprechaun, you will lose a gold coin.
-    If you choose to pass by the other leprechaun, you won’t lose any gold coin.
+    If you choose to pass by the other leprechaun, you won’t lose any gold coins.
+    You need to learn which leprechaun is currently the best one to choose throughout your journey.
     The aim of this game is to arrive at your village with as many of your gold coins as possible.
-    There will be many junctions like this, one after another. 
-    So you need to learn which leprechaun is currently the best one to choose throughout your journey.
-    
-    Say 'Blue' to select the Blue leprechaun and 'Red' to select the Red leprechaun`;
+ 
+    Say 'Blue' to select Blue leprechaun and 'Red' to select Red leprechaun';
 
     this.text_loss = 'Oops! you lost a coin'
 
