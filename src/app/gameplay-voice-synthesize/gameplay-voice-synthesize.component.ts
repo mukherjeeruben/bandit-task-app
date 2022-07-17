@@ -271,7 +271,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
 // Game Driving Logic Start //
 public async startGame() { 
-  this.startAudioRecording();
+  //this.startAudioRecording(); //removed Raw audio function
   this.playButton = false;
   while(this.iter_index < this.templateLength)
   {
@@ -317,8 +317,8 @@ public async startGame() {
         data =>{ 
           console.log('Data Inserted Succesfully!');}
       )
-      this.stopAudioRecording();
-      await this.saveAudioRecordedData();
+      //this.stopAudioRecording();  //removed Raw audio function
+      //await this.saveAudioRecordedData();//removed Raw audio function
       await this.onSuccessgameEnd();
       this.loadNextRoute();
     }
