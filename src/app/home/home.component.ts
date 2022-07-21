@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   public createUserId() {
     this.setGameplayRoutes();
-    sessionStorage.setItem('UserId', this.userId$);
+    localStorage.setItem('UserId', this.userId$);
     this.router.navigate(['/information']);
 }
 

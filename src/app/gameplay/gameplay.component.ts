@@ -110,7 +110,7 @@ public async loadNextIteration(responseIndex: number, selection: string)
       const now = new Date();
       let userResponse = {
         interface_type : this.templatetype,
-        user_id: sessionStorage.getItem('UserId'),
+        user_id: localStorage.getItem('UserId'),
         game_data : this.userGameData,
         creation_time: now
       };
@@ -143,7 +143,7 @@ public loadNextRoute(){
     this.router.navigate([nextRoute]);
   }
   else{
-    sessionStorage.clear();
+    localStorage.clear();
     localStorage.clear();
     this.router.navigate(['/home']);
   }

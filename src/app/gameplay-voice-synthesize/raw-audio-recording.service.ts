@@ -92,7 +92,7 @@ export class RawAudioRecordingService {
       this.recorder.stop((blob:any) => {
         if (this.startTime) {
           //const mp3Name = encodeURIComponent('audio_' + new Date().getTime() + '.mp3');
-          const sessionUserId = sessionStorage.getItem('UserId');
+          const sessionUserId = localStorage.getItem('UserId');
           const wavName = sessionUserId + '.wav'
           this.stopMedia();
           this._recorded.next({ blob: blob, title: wavName });

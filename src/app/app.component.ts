@@ -1,4 +1,6 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { DataService } from './data.service';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {  
+
+  constructor(private dataService:DataService) {
+  }
+
+  ngOnInit() {
+    this.sleepWakeUpServer();
+  }
+
+  public sleepWakeUpServer(){
+    return this.dataService.getUserId().subscribe();
+  }
 }

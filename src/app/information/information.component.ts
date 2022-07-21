@@ -32,12 +32,13 @@ export class InformationComponent {
       'I am over the age of 18': form.controls['response9'].value,
       'I consent to taking part in this study': form.controls['response10'].value
     }
-    let recorded_data = {user_id : sessionStorage.getItem('UserId'),
+    const now = new Date();
+    let recorded_data = {user_id : localStorage.getItem('UserId'),
                          consent_data:  information_data,
                          gender: form.controls['gender'].value,
-                         age:form.controls['age'].value};
+                         age:form.controls['age'].value,
+                         creation_time: now};
 
-    console.log(recorded_data)
     this.dataService.postUserConsentData(recorded_data).subscribe();
     this.loadNextRoute();
  }
