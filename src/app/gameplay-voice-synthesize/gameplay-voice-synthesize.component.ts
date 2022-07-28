@@ -43,6 +43,8 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
   public recordStopSound:any;
 
   public voiceResponseTime:number;
+  public rawRecording :boolean;
+  public audioSetNumber :number;
 
   userGameData: {[iteration_number:number]: IGameData} = {};
 
@@ -68,6 +70,9 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 		this.selectedRate = 0.9;
     this.voiceSelection ='';
     this.unrecognized = false;
+
+    this.rawRecording = false;
+    this.audioSetNumber = 0;
 
     this.totalReward = 100;
     this.iter_index = 0;
@@ -255,7 +260,12 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
             total_score: this.totalReward
           };
           if((this.iter_index + 1) % this.scoreSpeakIter == 0){
+            this.stopAudioRecording();  //removed Raw audio function
+            this.saveAudioRecordedData(this.audioSetNumber); //removed Raw audio function
+            this.audioSetNumber = this.audioSetNumber + 1
+            this.rawRecording = false;
             await this.gameScoreResponse();
+            this.rawRecording = false;
           }
           this.iter_index += 1;
           this.voiceTextService.text='';
@@ -271,10 +281,16 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
 
 // Game Driving Logic Start //
 public async startGame() { 
-  //this.startAudioRecording(); //removed Raw audio function
   this.playButton = false;
   while(this.iter_index < this.templateLength)
   {
+    if(!this.rawRecording){
+      this.startAudioRecording();
+      this.rawRecording = true;
+    }
+    
+    console.log('Start Iteration Record');
+
     if(!this.unrecognized){
       if(this.iter_index==0) {
         await this.initialSelectionResponse();
@@ -302,7 +318,7 @@ public async startGame() {
       await this.processRecordedData();
     }
 
-    console.log('Save data to db');
+    console.log('End Iteration Record');
 
     if(this.iter_index == this.templateLength){
       this.iter_index += 1;
@@ -317,8 +333,7 @@ public async startGame() {
         data =>{ 
           console.log('Data Inserted Succesfully!');}
       )
-      //this.stopAudioRecording();  //removed Raw audio function
-      //await this.saveAudioRecordedData();//removed Raw audio function
+      
       await this.onSuccessgameEnd();
       this.loadNextRoute();
     }
@@ -368,10 +383,11 @@ public filterAudioText(rawText:string): number{
 }
 // Game Driving Logic End //
 
-public loadNextRoute(){
+public async loadNextRoute(){
   if(localStorage.getItem('reroute') == 'true'){
     let nextRoute = localStorage.getItem('loadNext');
     localStorage.setItem('reroute', 'false');
+    await new Promise(f => setTimeout(f, 5000));
     this.router.navigate([nextRoute]);
   }
   else{
@@ -392,10 +408,12 @@ public stopAudioRecording() {
     this.rawaudioRecordingService.stopRecording();
 }
 
-public async saveAudioRecordedData(){
+public async saveAudioRecordedData(audioSetNumber:number){
   this.rawaudioRecordingService.getRecordedBlob().subscribe((data) => {
   const fileblob = new Blob([data['blob']], { type: "audio/wav" });
-  this.dataService.saveRawAudioFile(fileblob, data['title']).subscribe((event:any) =>{
+  let fileNameSet = data['title'].split('.');
+  let fileName = fileNameSet[0] + audioSetNumber.toString() + '.' + fileNameSet[1];
+  this.dataService.saveRawAudioFile(fileblob, fileName).subscribe((event:any) =>{
     console.log('Raw audio file uploaded successfully to bucket')
   });
   });
