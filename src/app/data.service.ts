@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
-  // baseUrl = 'https://bandit-task-api.herokuapp.com';  // Prod Env API
-  baseUrl = 'http://localhost:5000' // Local Env API
+  baseUrl = 'https://bandit-task-api.herokuapp.com';  // Prod Env API
+  // baseUrl = 'http://localhost:5000' // Local Env API
 
   constructor(private _http: HttpClient) { }
 
