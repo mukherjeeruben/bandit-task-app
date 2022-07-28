@@ -265,6 +265,7 @@ export class GameplayVoiceSynthesizeComponent implements OnInit {
             this.audioSetNumber = this.audioSetNumber + 1
             this.rawRecording = false;
             await this.gameScoreResponse();
+            this.rawaudioRecordingService.abortRecording() // TODO check 
             this.rawRecording = false;
           }
           this.iter_index += 1;
